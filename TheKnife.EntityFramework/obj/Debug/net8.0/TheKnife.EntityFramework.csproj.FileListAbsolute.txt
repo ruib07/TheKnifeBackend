@@ -1,0 +1,17 @@
+C:\Users\Utilizador\TheKnifeBackend\TheKnife.EntityFramework\bin\Debug\net8.0\TheKnife.EntityFramework.deps.json
+C:\Users\Utilizador\TheKnifeBackend\TheKnife.EntityFramework\bin\Debug\net8.0\TheKnife.EntityFramework.runtimeconfig.json
+C:\Users\Utilizador\TheKnifeBackend\TheKnife.EntityFramework\bin\Debug\net8.0\TheKnife.EntityFramework.dll
+C:\Users\Utilizador\TheKnifeBackend\TheKnife.EntityFramework\bin\Debug\net8.0\TheKnife.EntityFramework.pdb
+C:\Users\Utilizador\TheKnifeBackend\TheKnife.EntityFramework\bin\Debug\net8.0\TheKnife.Entities.dll
+C:\Users\Utilizador\TheKnifeBackend\TheKnife.EntityFramework\bin\Debug\net8.0\TheKnife.Entities.pdb
+C:\Users\Utilizador\TheKnifeBackend\TheKnife.EntityFramework\obj\Debug\net8.0\TheKnife.EntityFramework.csproj.AssemblyReference.cache
+C:\Users\Utilizador\TheKnifeBackend\TheKnife.EntityFramework\obj\Debug\net8.0\TheKnife.EntityFramework.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Utilizador\TheKnifeBackend\TheKnife.EntityFramework\obj\Debug\net8.0\TheKnife.EntityFramework.AssemblyInfoInputs.cache
+C:\Users\Utilizador\TheKnifeBackend\TheKnife.EntityFramework\obj\Debug\net8.0\TheKnife.EntityFramework.AssemblyInfo.cs
+C:\Users\Utilizador\TheKnifeBackend\TheKnife.EntityFramework\obj\Debug\net8.0\TheKnife.EntityFramework.csproj.CoreCompileInputs.cache
+C:\Users\Utilizador\TheKnifeBackend\TheKnife.EntityFramework\obj\Debug\net8.0\TheKnife.EntityFramework.csproj.CopyComplete
+C:\Users\Utilizador\TheKnifeBackend\TheKnife.EntityFramework\obj\Debug\net8.0\TheKnife.EntityFramework.dll
+C:\Users\Utilizador\TheKnifeBackend\TheKnife.EntityFramework\obj\Debug\net8.0\refint\TheKnife.EntityFramework.dll
+C:\Users\Utilizador\TheKnifeBackend\TheKnife.EntityFramework\obj\Debug\net8.0\TheKnife.EntityFramework.pdb
+C:\Users\Utilizador\TheKnifeBackend\TheKnife.EntityFramework\obj\Debug\net8.0\TheKnife.EntityFramework.genruntimeconfig.cache
+C:\Users\Utilizador\TheKnifeBackend\TheKnife.EntityFramework\obj\Debug\net8.0\ref\TheKnife.EntityFramework.dll

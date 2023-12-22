@@ -1,0 +1,17 @@
+C:\Users\Utilizador\TheKnifeBackend\TheKnife.Services\bin\Debug\net8.0\TheKnife.Services.deps.json
+C:\Users\Utilizador\TheKnifeBackend\TheKnife.Services\bin\Debug\net8.0\TheKnife.Services.dll
+C:\Users\Utilizador\TheKnifeBackend\TheKnife.Services\bin\Debug\net8.0\TheKnife.Services.pdb
+C:\Users\Utilizador\TheKnifeBackend\TheKnife.Services\obj\Debug\net8.0\TheKnife.Services.csproj.AssemblyReference.cache
+C:\Users\Utilizador\TheKnifeBackend\TheKnife.Services\obj\Debug\net8.0\TheKnife.Services.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Utilizador\TheKnifeBackend\TheKnife.Services\obj\Debug\net8.0\TheKnife.Services.AssemblyInfoInputs.cache
+C:\Users\Utilizador\TheKnifeBackend\TheKnife.Services\obj\Debug\net8.0\TheKnife.Services.AssemblyInfo.cs
+C:\Users\Utilizador\TheKnifeBackend\TheKnife.Services\obj\Debug\net8.0\TheKnife.Services.csproj.CoreCompileInputs.cache
+C:\Users\Utilizador\TheKnifeBackend\TheKnife.Services\obj\Debug\net8.0\TheKnife.Services.dll
+C:\Users\Utilizador\TheKnifeBackend\TheKnife.Services\obj\Debug\net8.0\refint\TheKnife.Services.dll
+C:\Users\Utilizador\TheKnifeBackend\TheKnife.Services\obj\Debug\net8.0\TheKnife.Services.pdb
+C:\Users\Utilizador\TheKnifeBackend\TheKnife.Services\obj\Debug\net8.0\ref\TheKnife.Services.dll
+C:\Users\Utilizador\TheKnifeBackend\TheKnife.Services\bin\Debug\net8.0\TheKnife.Entities.dll
+C:\Users\Utilizador\TheKnifeBackend\TheKnife.Services\bin\Debug\net8.0\TheKnife.EntityFramework.dll
+C:\Users\Utilizador\TheKnifeBackend\TheKnife.Services\bin\Debug\net8.0\TheKnife.Entities.pdb
+C:\Users\Utilizador\TheKnifeBackend\TheKnife.Services\bin\Debug\net8.0\TheKnife.EntityFramework.pdb
+C:\Users\Utilizador\TheKnifeBackend\TheKnife.Services\obj\Debug\net8.0\TheKnife.Services.csproj.CopyComplete

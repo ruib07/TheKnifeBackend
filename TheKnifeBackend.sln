@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34316.72
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheKnife.API", "TheKnife.API\TheKnife.API.csproj", "{1C21D04D-215E-4A70-ACE5-CF550DDE2D1A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01-Presentation", "01-Presentation", "{D2A2BA94-61A7-400F-8D4A-1B15820B9457}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02-Services", "02-Services", "{ADF09280-2B22-4498-A266-08732BB318F8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03-Persistance", "03-Persistance", "{602CDD64-DA04-436F-BF69-35EF7B43D8DD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheKnife.Services", "TheKnife.Services\TheKnife.Services.csproj", "{556EAC86-D077-4B6E-8814-DD7DD827C2DC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheKnife.Entities", "TheKnife.Entities\TheKnife.Entities.csproj", "{A584B7CC-95CB-427F-9A32-63172B81252E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheKnife.EntityFramework", "TheKnife.EntityFramework\TheKnife.EntityFramework.csproj", "{A287DB4F-6B96-4C73-835A-2FBCE72BB5D8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1C21D04D-215E-4A70-ACE5-CF550DDE2D1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C21D04D-215E-4A70-ACE5-CF550DDE2D1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C21D04D-215E-4A70-ACE5-CF550DDE2D1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C21D04D-215E-4A70-ACE5-CF550DDE2D1A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{556EAC86-D077-4B6E-8814-DD7DD827C2DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{556EAC86-D077-4B6E-8814-DD7DD827C2DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{556EAC86-D077-4B6E-8814-DD7DD827C2DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{556EAC86-D077-4B6E-8814-DD7DD827C2DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A584B7CC-95CB-427F-9A32-63172B81252E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A584B7CC-95CB-427F-9A32-63172B81252E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A584B7CC-95CB-427F-9A32-63172B81252E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A584B7CC-95CB-427F-9A32-63172B81252E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A287DB4F-6B96-4C73-835A-2FBCE72BB5D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A287DB4F-6B96-4C73-835A-2FBCE72BB5D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A287DB4F-6B96-4C73-835A-2FBCE72BB5D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A287DB4F-6B96-4C73-835A-2FBCE72BB5D8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1C21D04D-215E-4A70-ACE5-CF550DDE2D1A} = {D2A2BA94-61A7-400F-8D4A-1B15820B9457}
+		{556EAC86-D077-4B6E-8814-DD7DD827C2DC} = {ADF09280-2B22-4498-A266-08732BB318F8}
+		{A584B7CC-95CB-427F-9A32-63172B81252E} = {602CDD64-DA04-436F-BF69-35EF7B43D8DD}
+		{A287DB4F-6B96-4C73-835A-2FBCE72BB5D8} = {602CDD64-DA04-436F-BF69-35EF7B43D8DD}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {27B1A14C-C62C-4677-B408-C60829F936E7}
+	EndGlobalSection
+EndGlobal
