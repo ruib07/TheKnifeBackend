@@ -15,3 +15,4 @@ C:\Users\Utilizador\TheKnifeBackend\TheKnife.EntityFramework\obj\Debug\net8.0\re
 C:\Users\Utilizador\TheKnifeBackend\TheKnife.EntityFramework\obj\Debug\net8.0\TheKnife.EntityFramework.pdb
 C:\Users\Utilizador\TheKnifeBackend\TheKnife.EntityFramework\obj\Debug\net8.0\TheKnife.EntityFramework.genruntimeconfig.cache
 C:\Users\Utilizador\TheKnifeBackend\TheKnife.EntityFramework\obj\Debug\net8.0\ref\TheKnife.EntityFramework.dll
+C:\Users\Utilizador\TheKnifeBackend\TheKnife.EntityFramework\obj\Debug\net8.0\TheKnife.EntityFramework.sourcelink.json

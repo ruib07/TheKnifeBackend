@@ -146,3 +146,4 @@ C:\Users\Utilizador\TheKnifeBackend\TheKnife.API\bin\Debug\net8.0\TheKnife.Entit
 C:\Users\Utilizador\TheKnifeBackend\TheKnife.API\bin\Debug\net8.0\Scrutor.dll
 C:\Users\Utilizador\TheKnifeBackend\TheKnife.API\bin\Debug\net8.0\TheKnife.Services.dll
 C:\Users\Utilizador\TheKnifeBackend\TheKnife.API\bin\Debug\net8.0\TheKnife.Services.pdb
+C:\Users\Utilizador\TheKnifeBackend\TheKnife.API\obj\Debug\net8.0\TheKnife.API.sourcelink.json

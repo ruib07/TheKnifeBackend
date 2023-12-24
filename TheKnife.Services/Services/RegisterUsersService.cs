@@ -10,7 +10,7 @@ namespace TheKnife.Services.Services
         Task<RegisterUsersEfo> GetRegisterUserByIdAsync(int id);
         Task<RegisterUsersEfo> SendRegisterUserAsync(RegisterUsersEfo registerUser);
         Task<RegisterUsersEfo> SendLoginUserAsync(string email, string password);
-        Task<RegisterUsersEfo> RecoverPasswordAsync(int id, string newPassword, string confirmPassword);
+        Task<RegisterUsersEfo> UpdatePasswordAsync(int id, string newPassword, string confirmPassword);
         Task DeleteRegisterUserAsync(int id);
     }
 
@@ -57,7 +57,7 @@ namespace TheKnife.Services.Services
             return loginUser;
         }
 
-        public async Task<RegisterUsersEfo> RecoverPasswordAsync(int id, string newPassword, string confirmPassword)
+        public async Task<RegisterUsersEfo> UpdatePasswordAsync(int id, string newPassword, string confirmPassword)
         {
             RegisterUsersEfo? updatePasswordRegisterUser = await _context.RegisterUsers.FirstOrDefaultAsync(
                 ru => ru.Id == id);

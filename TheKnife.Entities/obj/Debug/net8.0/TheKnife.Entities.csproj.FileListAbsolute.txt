@@ -9,3 +9,4 @@ C:\Users\Utilizador\TheKnifeBackend\TheKnife.Entities\obj\Debug\net8.0\TheKnife.
 C:\Users\Utilizador\TheKnifeBackend\TheKnife.Entities\obj\Debug\net8.0\refint\TheKnife.Entities.dll
 C:\Users\Utilizador\TheKnifeBackend\TheKnife.Entities\obj\Debug\net8.0\TheKnife.Entities.pdb
 C:\Users\Utilizador\TheKnifeBackend\TheKnife.Entities\obj\Debug\net8.0\ref\TheKnife.Entities.dll
+C:\Users\Utilizador\TheKnifeBackend\TheKnife.Entities\obj\Debug\net8.0\TheKnife.Entities.sourcelink.json

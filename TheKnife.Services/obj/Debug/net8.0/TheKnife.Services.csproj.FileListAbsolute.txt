@@ -15,3 +15,4 @@ C:\Users\Utilizador\TheKnifeBackend\TheKnife.Services\bin\Debug\net8.0\TheKnife.
 C:\Users\Utilizador\TheKnifeBackend\TheKnife.Services\bin\Debug\net8.0\TheKnife.Entities.pdb
 C:\Users\Utilizador\TheKnifeBackend\TheKnife.Services\bin\Debug\net8.0\TheKnife.EntityFramework.pdb
 C:\Users\Utilizador\TheKnifeBackend\TheKnife.Services\obj\Debug\net8.0\TheKnife.Services.csproj.CopyComplete
+C:\Users\Utilizador\TheKnifeBackend\TheKnife.Services\obj\Debug\net8.0\TheKnife.Services.sourcelink.json

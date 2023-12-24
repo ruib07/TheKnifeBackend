@@ -9,8 +9,8 @@ namespace TheKnife.Services.Services
         Task<List<RestaurantResponsiblesEfo>> GetAllRestaurantResponsiblesAsync();
         Task<RestaurantResponsiblesEfo> GetRestaurantResponsibleByIdAsync(int id);
         Task<RestaurantResponsiblesEfo> SendRestaurantResponsibleAsync(RestaurantResponsiblesEfo restaurantResponsible);
-        Task<RestaurantResponsiblesEfo> LoginRestaurantResponsible(string email, string password);
-        Task<RestaurantResponsiblesEfo> UpdateRestaurantResponsible(int id, RestaurantResponsiblesEfo updateRestaurantResponsible);
+        Task<RestaurantResponsiblesEfo> SendLoginRestaurantResponsibleAsync(string email, string password);
+        Task<RestaurantResponsiblesEfo> UpdateRestaurantResponsibleAsync(int id, RestaurantResponsiblesEfo updateRestaurantResponsible);
         Task DeleteRestaurantResponsibleAsync(int id);
     }
 
@@ -49,7 +49,7 @@ namespace TheKnife.Services.Services
             return restaurantResponsible;
         }
 
-        public async Task<RestaurantResponsiblesEfo> LoginRestaurantResponsible(string email, string password)
+        public async Task<RestaurantResponsiblesEfo> SendLoginRestaurantResponsibleAsync(string email, string password)
         {
             RestaurantResponsiblesEfo? loginResponsible = await _context.RestaurantResponsibles.FirstOrDefaultAsync(
                 lr => lr.Email == email && lr.Password == password);
@@ -57,7 +57,7 @@ namespace TheKnife.Services.Services
             return loginResponsible;
         }
 
-        public async Task<RestaurantResponsiblesEfo> UpdateRestaurantResponsible(int id, RestaurantResponsiblesEfo updateRestaurantResponsible)
+        public async Task<RestaurantResponsiblesEfo> UpdateRestaurantResponsibleAsync(int id, RestaurantResponsiblesEfo updateRestaurantResponsible)
         {
             try
             {
