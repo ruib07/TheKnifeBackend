@@ -1,10 +1,14 @@
 const request = require('supertest');
+const jwt = require('jwt-simple');
 
 const app = require('../../src/app');
 
 const route = '/users';
 
+const userSecret = 'ipcaDWM@202324';
+
 let user;
+let userToken;
 
 beforeAll(async () => {
   const res = await app.services.registeruser.save({
@@ -13,10 +17,22 @@ beforeAll(async () => {
     password: 'goncalo123',
   });
   user = { ...res[0] };
+
+  const userRes = await app.services.user.save({
+    username: 'goncalosousa',
+    email: 'goncalosousa@gmail.com',
+    password: 'goncalo123',
+    image: null,
+    registeruser_id: user.id,
+  });
+
+  userToken = { ...userRes };
+  userToken.usertoken = jwt.encode(userToken, userSecret);
 });
 
 test('Test #55 - Listar todos os utilizadores', () => {
   return request(app).get(route)
+    .set('Authorization', `bearer ${userToken.usertoken}`)
     .then((res) => {
       expect(res.status).toBe(200);
     });
@@ -31,7 +47,8 @@ test('Test #56 - Listar um user por ID', () => {
       image: null,
       registeruser_id: user.id,
     }, ['id'])
-    .then((userRes) => request(app).get(`${route}/${userRes[0].id}`))
+    .then((userRes) => request(app).get(`${route}/${userRes[0].id}`)
+      .set('Authorization', `bearer ${userToken.usertoken}`))
     .then((res) => {
       expect(res.status).toBe(200);
       expect(res.body.username).toBe('goncalosousa');
@@ -40,6 +57,7 @@ test('Test #56 - Listar um user por ID', () => {
 
 test('Test #57 - Inserir um utilizador', () => {
   return request(app).post(route)
+    .set('Authorization', `bearer ${userToken.usertoken}`)
     .send({
       username: 'goncalosousa',
       email: 'goncalosousa@gmail.com',
@@ -56,6 +74,7 @@ test('Test #57 - Inserir um utilizador', () => {
 
 test('Test #57.1 - Guardar password encriptada', async () => {
   const res = await request(app).post(route)
+    .set('Authorization', `bearer ${userToken.usertoken}`)
     .send({
       username: 'goncalosousa',
       email: 'goncalosousa@gmail.com',
@@ -74,6 +93,7 @@ test('Test #57.1 - Guardar password encriptada', async () => {
 
 test('Test #58 - Inserir um utilizador sem username', () => {
   return request(app).post(route)
+    .set('Authorization', `bearer ${userToken.usertoken}`)
     .send({
       email: 'goncalosousa@gmail.com',
       password: 'goncalo123',
@@ -88,6 +108,7 @@ test('Test #58 - Inserir um utilizador sem username', () => {
 
 test('Test #59 - Inserir um utilizador sem email', () => {
   return request(app).post(route)
+    .set('Authorization', `bearer ${userToken.usertoken}`)
     .send({
       username: 'goncalosousa',
       password: 'goncalo123',
@@ -102,6 +123,7 @@ test('Test #59 - Inserir um utilizador sem email', () => {
 
 test('Test #60 - Inserir um utilizador sem password', () => {
   return request(app).post(route)
+    .set('Authorization', `bearer ${userToken.usertoken}`)
     .send({
       username: 'goncalosousa',
       email: 'goncalosousa@gmail.com',
@@ -124,6 +146,7 @@ test('Test #61 - Atualizar os dados de um utilizador', () => {
       registeruser_id: user.id,
     }, ['id'])
     .then((userRes) => request(app).put(`${route}/${userRes[0].id}`)
+      .set('Authorization', `bearer ${userToken.usertoken}`)
       .send({
         username: 'goncalocoutinhosousa',
         email: 'goncalosousa123@gmail.com',
