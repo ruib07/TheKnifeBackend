@@ -5,6 +5,12 @@ module.exports = (app) => {
   app.route('/auths/responsiblesignup')
     .post(app.routes.restaurantresponsibles.create);
 
+  app.route('/auths/usersignin')
+    .post(app.routes.auths.usersignin);
+
+  app.route('/auths/usersignup')
+    .post(app.routes.users.create);
+
   app.route('/restaurantregistrations')
     .get(app.routes.restaurantregistrations.getAll)
     .post(app.routes.restaurantregistrations.create);
@@ -50,10 +56,12 @@ module.exports = (app) => {
     .post(app.routes.registerusers.login);
 
   app.route('/users')
+    .all(app.config.passportuser.userauthenticate())
     .get(app.routes.users.getAll)
     .post(app.routes.users.create);
 
   app.route('/users/:id')
+    .all(app.config.passportuser.userauthenticate())
     .get(app.routes.users.getId)
     .put(app.routes.users.update);
 
