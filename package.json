@@ -11,7 +11,7 @@
     "test": "jest",
     "lint": "eslint src/** test/** --fix",
     "knex:migrate:test:mac": "export NODE_ENV=test && knex migrate:latest --env test",
-    "secure-mode:mac": "export NODE_ENV=test && npm run knex:migrate:test && jest --watchAll",
+    "secure-mode:mac": "export NODE_ENV=test && npm run knex:migrate:test:mac && jest --watchAll",
     "start:test:mac": "export NODE_ENV=test && npm run knex:migrate:test && node src/server.js",
     "knex:migrate:test:windows": "set NODE_ENV=test&&knex migrate:latest --env test",
     "secure-mode:windows": "set NODE_ENV=test&&npm run knex:migrate:test:windows&& jest --watchAll",
