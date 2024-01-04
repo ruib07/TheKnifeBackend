@@ -4,7 +4,7 @@ const passportJwt = require('passport-jwt');
 
 const { Strategy, ExtractJwt } = passportJwt;
 
-const userSecret = 'ipcaDWM@202324'; 
+const userSecret = 'ipcaDWM@202324';
 
 module.exports = (app) => {
   const userparams = {
@@ -21,7 +21,7 @@ module.exports = (app) => {
   });
 
   userpassport.use('user-jwt', userstrategy);
-  
+
   return {
     userauthenticate: () => userpassport.authenticate('user-jwt', { session: false }),
   };

@@ -52,9 +52,6 @@ module.exports = (app) => {
   app.route('/registerusers/:id/updatepassword')
     .put(app.routes.registerusers.updatePassword);
 
-  app.route('/registerusers/login')
-    .post(app.routes.registerusers.login);
-
   app.route('/users')
     .all(app.config.passportuser.userauthenticate())
     .get(app.routes.users.getAll)
