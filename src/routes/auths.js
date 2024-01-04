@@ -33,9 +33,9 @@ module.exports = (app) => {
   const usersignin = (req, res, next) => {
     app.services.user.find({
       email: req.body.email,
-    }).
-      then((user) => {
-        if(bcrypt.compareSync(req.body.password, user.password)) {
+    })
+      .then((user) => {
+        if (bcrypt.compareSync(req.body.password, user.password)) {
           const payload = {
             id: user.id,
             username: user.username,
@@ -47,7 +47,7 @@ module.exports = (app) => {
           const usertoken = jwt.encode(payload, userSecret);
           res.status(200).json({ usertoken, user: payload });
         } else {
-          res.status(400).json({ error: 'Autenticação invalida'});
+          res.status(400).json({ error: 'Autenticação invalida' });
         }
       })
       .catch((err) => next(err));
