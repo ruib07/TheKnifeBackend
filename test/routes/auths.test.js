@@ -29,6 +29,7 @@ beforeAll(async () => {
     numberoftables: 10,
     capacity: 200,
     openingdays: 'Aberto de segunda a sábado',
+    averageprice: 18.75,
     openinghours: '10:30',
     closinghours: '23:00',
   });
@@ -40,7 +41,6 @@ beforeAll(async () => {
     password: 'goncalo123',
   });
   user = { ...res[0] };
-  
 });
 
 test('Test #62 - Receber token ao autenticar para os responsáveis', () => {
@@ -136,7 +136,6 @@ test('Test #67 - Receber Token User', () => {
     });
 });
 
-
 test('Test #68 - Autenticação Errado User', () => {
   return app.services.user.save({
     username: 'Goncalo Auth',
@@ -155,7 +154,6 @@ test('Test #68 - Autenticação Errado User', () => {
       expect(res.body.error).toBe('Autenticação invalida');
     });
 });
-
 
 test('Test #69 - Aceder a rotas protegidas users', () => {
   return request(app).get(userRoute)

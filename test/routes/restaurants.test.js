@@ -26,6 +26,7 @@ beforeAll(async () => {
     numberoftables: 10,
     capacity: 200,
     openingdays: 'Aberto de segunda a sábado',
+    averageprice: 18.75,
     openinghours: '10:30',
     closinghours: '23:00',
   });
@@ -72,6 +73,7 @@ test('Test #31 - Listar um restaurante por ID', () => {
       numberoftables: 10,
       capacity: 200,
       openingdays: 'Aberto de segunda a sábado',
+      averageprice: 18.75,
       openinghours: '10:30',
       closinghours: '23:00',
       restaurantregistration_id: restaurant.id,
@@ -97,6 +99,7 @@ test('Test #32 - Inserir um restaurante', () => {
       numberoftables: 10,
       capacity: 200,
       openingdays: 'Aberto de segunda a sábado',
+      averageprice: 18.75,
       openinghours: '10:30',
       closinghours: '23:00',
       restaurantregistration_id: restaurant.id,
@@ -120,6 +123,7 @@ test('Test #33 - Inserir um restaurante sem nome do restaurante', () => {
       numberoftables: 10,
       capacity: 200,
       openingdays: 'Aberto de segunda a sábado',
+      averageprice: 18.75,
       openinghours: '10:30',
       closinghours: '23:00',
       restaurantregistration_id: restaurant.id,
@@ -143,6 +147,7 @@ test('Test #34 - Inserir um restaurante sem categoria do restaurante', () => {
       numberoftables: 10,
       capacity: 200,
       openingdays: 'Aberto de segunda a sábado',
+      averageprice: 18.75,
       openinghours: '10:30',
       closinghours: '23:00',
       restaurantregistration_id: restaurant.id,
@@ -166,6 +171,7 @@ test('Test #35 - Inserir um restaurante sem descrição do restaurante', () => {
       numberoftables: 10,
       capacity: 200,
       openingdays: 'Aberto de segunda a sábado',
+      averageprice: 18.75,
       openinghours: '10:30',
       closinghours: '23:00',
       restaurantregistration_id: restaurant.id,
@@ -189,6 +195,7 @@ test('Test #36 - Inserir um restaurante sem telefone do restaurante', () => {
       numberoftables: 10,
       capacity: 200,
       openingdays: 'Aberto de segunda a sábado',
+      averageprice: 18.75,
       openinghours: '10:30',
       closinghours: '23:00',
       restaurantregistration_id: restaurant.id,
@@ -212,6 +219,7 @@ test('Test #37 - Inserir um restaurante sem localização do restaurante', () =>
       numberoftables: 10,
       capacity: 200,
       openingdays: 'Aberto de segunda a sábado',
+      averageprice: 18.75,
       openinghours: '10:30',
       closinghours: '23:00',
       restaurantregistration_id: restaurant.id,
@@ -235,6 +243,7 @@ test('Test #38 - Inserir um restaurante sem imagem do restaurante', () => {
       numberoftables: 10,
       capacity: 200,
       openingdays: 'Aberto de segunda a sábado',
+      averageprice: 18.75,
       openinghours: '10:30',
       closinghours: '23:00',
       restaurantregistration_id: restaurant.id,
@@ -258,6 +267,7 @@ test('Test #39 - Inserir um restaurante sem número de mesas do restaurante', ()
       image: '/Frontend/theknife-website/src/assets/logos/TheKnife-LogoDark.png',
       capacity: 200,
       openingdays: 'Aberto de segunda a sábado',
+      averageprice: 18.75,
       openinghours: '10:30',
       closinghours: '23:00',
       restaurantregistration_id: restaurant.id,
@@ -281,6 +291,7 @@ test('Test #40 - Inserir um restaurante sem capacidade de pessoas', () => {
       image: '/Frontend/theknife-website/src/assets/logos/TheKnife-LogoDark.png',
       numberoftables: 10,
       openingdays: 'Aberto de segunda a sábado',
+      averageprice: 18.75,
       openinghours: '10:30',
       closinghours: '23:00',
       restaurantregistration_id: restaurant.id,
@@ -304,6 +315,7 @@ test('Test #41 - Inserir um restaurante sem horário de funcionamento', () => {
       image: '/Frontend/theknife-website/src/assets/logos/TheKnife-LogoDark.png',
       numberoftables: 10,
       capacity: 200,
+      averageprice: 18.75,
       openinghours: '10:30',
       closinghours: '23:00',
       restaurantregistration_id: restaurant.id,
@@ -312,6 +324,30 @@ test('Test #41 - Inserir um restaurante sem horário de funcionamento', () => {
     .then((res) => {
       expect(res.status).toBe(400);
       expect(res.body.error).toBe('Dias de funcionamento são um atributo obrigatório!');
+    });
+});
+
+test('Test #42 - Inserir um restaurante sem preço médio', () => {
+  return request(app).post(route)
+    .set('Authorization', `bearer ${responsibleRegistration.token}`)
+    .send({
+      name: 'La Gusto Italiano',
+      category: 'Comida Italiana',
+      desc: 'Restaurante de comida italiana situado em Braga',
+      rphone: 253456789,
+      location: 'Rua Gonçalo Sousa 285',
+      image: '/Frontend/theknife-website/src/assets/logos/TheKnife-LogoDark.png',
+      numberoftables: 10,
+      capacity: 200,
+      openingdays: 'Aberto de segunda a sábado',
+      openinghours: '10:30',
+      closinghours: '23:00',
+      restaurantregistration_id: restaurant.id,
+      rresponsible_id: restaurantResponsible.id,
+    })
+    .then((res) => {
+      expect(res.status).toBe(400);
+      expect(res.body.error).toBe('Preço médio é um atributo obrigatório!');
     });
 });
 
@@ -328,6 +364,7 @@ test('Test #42 - Inserir um restaurante sem horas de abertura', () => {
       numberoftables: 10,
       capacity: 200,
       openingdays: 'Aberto de segunda a sábado',
+      averageprice: 18.75,
       closinghours: '23:00',
     })
     .then((res) => {
@@ -349,6 +386,7 @@ test('Test #43 - Inserir um restaurante sem horas de fecho', () => {
       numberoftables: 10,
       capacity: 200,
       openingdays: 'Aberto de segunda a sábado',
+      averageprice: 18.75,
       openinghours: '10:30',
     })
     .then((res) => {
@@ -369,6 +407,7 @@ test('Test #44 - Atualizar dados de um restaurante', () => {
       numberoftables: 10,
       capacity: 200,
       openingdays: 'Aberto de segunda a sábado',
+      averageprice: 18.75,
       openinghours: '10:30',
       closinghours: '23:00',
       restaurantregistration_id: restaurant.id,
@@ -386,6 +425,7 @@ test('Test #44 - Atualizar dados de um restaurante', () => {
         numberoftables: 10,
         capacity: 200,
         openingdays: 'Aberto de segunda a sábado',
+        averageprice: 28.75,
         openinghours: '11:30',
         closinghours: '23:30',
         restaurantregistration_id: restaurant.id,
