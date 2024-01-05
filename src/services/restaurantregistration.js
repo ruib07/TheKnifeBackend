@@ -18,6 +18,7 @@ module.exports = (app) => {
       'numberoftables',
       'capacity',
       'openingdays',
+      'averageprice',
       'openinghours',
       'closinghours',
     ]);
@@ -46,6 +47,7 @@ module.exports = (app) => {
     if (!restaurantregistration.numberoftables) throw new ValidationError('Número de mesas do restaurante é um atributo obrigatório!');
     if (!restaurantregistration.capacity) throw new ValidationError('Capacidade do restaurante é um atributo obrigatório!');
     if (!restaurantregistration.openingdays) throw new ValidationError('Dias de funcionamento são um atributo obrigatório!');
+    if (!restaurantregistration.averageprice) throw new ValidationError('Preço médio é um atributo obrigatório!');
     if (!restaurantregistration.openinghours) throw new ValidationError('Horas de abertura são um atributo obrigatório!');
     if (!restaurantregistration.closinghours) throw new ValidationError('Horas de fecho são um atributo obrigatório!');
 
@@ -66,6 +68,7 @@ module.exports = (app) => {
       'numberoftables',
       'capacity',
       'openingdays',
+      'averageprice',
       'openinghours',
       'closinghours',
     ]);
@@ -110,6 +113,7 @@ module.exports = (app) => {
         'numberoftables',
         'capacity',
         'openingdays',
+        'averageprice',
         'openinghours',
         'closinghours',
       ]);

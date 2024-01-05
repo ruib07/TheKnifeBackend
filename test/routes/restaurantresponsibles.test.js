@@ -26,6 +26,7 @@ beforeAll(async () => {
     numberoftables: 10,
     capacity: 200,
     openingdays: 'Aberto de segunda a sábado',
+    averageprice: 18.75,
     openinghours: '10:30',
     closinghours: '23:00',
   });

@@ -22,6 +22,7 @@ module.exports = (app) => {
       if (!registerrestaurant.numberoftables) throw new ValidationError('Número de mesas do restaurante é um atributo obrigatório!');
       if (!registerrestaurant.capacity) throw new ValidationError('Capacidade do restaurante é um atributo obrigatório!');
       if (!registerrestaurant.openingdays) throw new ValidationError('Dias de funcionamento são um atributo obrigatório!');
+      if (!registerrestaurant.averageprice) throw new ValidationError('Preço médio é um atributo obrigatório!');
       if (!registerrestaurant.openinghours) throw new ValidationError('Horas de abertura são um atributo obrigatório!');
       if (!registerrestaurant.closinghours) throw new ValidationError('Horas de fecho são um atributo obrigatório!');
       const [restaurant] = await app.db('restaurants').insert(registerrestaurant, '*');

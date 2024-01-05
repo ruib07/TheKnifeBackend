@@ -10,6 +10,7 @@ exports.up = (knex) => {
     t.integer('numberoftables').notNull();
     t.integer('capacity').notNull();
     t.string('openingdays', 100).notNull();
+    t.decimal('averageprice', 5, 1).notNull();
     t.time('openinghours').notNull();
     t.time('closinghours').notNull();
     t.integer('restaurantregistration_id')
