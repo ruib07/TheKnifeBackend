@@ -24,18 +24,6 @@ module.exports = (app) => {
       });
   };
 
-  const login = async (req, res) => {
-    const { email, password } = req.body;
-
-    const user = await app.services.registeruser.getByEmail(email);
-
-    if (!user || !bcrypt.compareSync(password, user.password)) {
-      return res.status(401).json({ error: 'Email ou password incorretos!' });
-    }
-
-    return res.status(200).json({ message: 'Login efetuado com sucesso!' });
-  };
-
   const updatePassword = async (req, res) => {
     const { newPassword, confirmNewPassword } = req.body;
 
@@ -61,7 +49,6 @@ module.exports = (app) => {
     getAll,
     getId,
     create,
-    login,
     update,
     updatePassword,
   };

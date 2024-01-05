@@ -44,7 +44,7 @@ test('Test #47 - Atualizar dados de um utilizador', () => {
     });
 });
 
-test('Test #48 - Inserir um registo de um utilizador e login', async () => {
+test('Test #48 - Inserir um registo de um utilizador', async () => {
   const registrationResponse = await request(app).post(route)
     .send({
       username: 'goncalosousa',
@@ -54,15 +54,6 @@ test('Test #48 - Inserir um registo de um utilizador e login', async () => {
 
   expect(registrationResponse.status).toBe(201);
   expect(registrationResponse.body).not.toHaveProperty('password');
-
-  const loginResponse = await request(app).post(`${route}/login`)
-    .send({
-      email: 'goncalosousa@gmail.com',
-      password: 'goncalo123',
-    });
-
-  expect(loginResponse.status).toBe(200);
-  expect(loginResponse.body.message).toBe('Login efetuado com sucesso!');
 });
 
 test('Test #48.1 - Guardar password encriptada', async () => {
@@ -115,17 +106,6 @@ test('Test #51 - Inserir um utilizador sem password', () => {
       expect(res.status).toBe(400);
       expect(res.body.error).toBe('Password é um atributo obrigatório!');
     });
-});
-
-test('Test #52 - Login com dados inválidos', async () => {
-  const loginResponse = await request(app).post(`${route}/login`)
-    .send({
-      email: 'goncalosousa123@gmail.com',
-      password: 'goncalo4321',
-    });
-
-  expect(loginResponse.status).toBe(401);
-  expect(loginResponse.body.error).toBe('Email ou password incorretos!');
 });
 
 test('Test #53 - Inserir e confirmar a Palavra Passe', async () => {

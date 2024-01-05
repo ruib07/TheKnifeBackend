@@ -25,30 +25,14 @@ module.exports = (app) => {
     if (!registeruser.email) throw new ValidationError('Email é um atributo obrigatório!');
     if (!registeruser.password) throw new ValidationError('Password é um atributo obrigatório!');
 
-    const existingUser = await app.services.registeruser.getByEmail(registeruser.email);
-
     const newRegisterUser = { ...registeruser };
     newRegisterUser.password = getPasswordHash(registeruser.password);
-
-    if (existingUser) {
-      return app.db('registerusers')
-        .where('email', registeruser.email)
-        .update(newRegisterUser, [
-          'id',
-          'username',
-          'email',
-        ]);
-    }
 
     return app.db('registerusers').insert(newRegisterUser, [
       'id',
       'username',
       'email',
     ]);
-  };
-
-  const getByEmail = (email) => {
-    return app.db('registerusers').where('email', email).first();
   };
 
   const update = (id, userRes) => {
@@ -85,7 +69,6 @@ module.exports = (app) => {
   return {
     getAll,
     find,
-    getByEmail,
     save,
     update,
     updatePassword,
