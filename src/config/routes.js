@@ -68,4 +68,13 @@ module.exports = (app) => {
 
   app.route('/contacts/:id')
     .get(app.routes.contacts.getContactById);
+
+  app.route('/comments')
+    .get(app.routes.comments.getAll)
+    .post(app.routes.comments.create);
+
+  app.route('/comments/:id')
+    .get(app.routes.comments.getId)
+    .put(app.routes.comments.update)
+    .delete(app.routes.comments.remove);
 };

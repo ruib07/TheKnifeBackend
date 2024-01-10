@@ -30,7 +30,7 @@ beforeAll(async () => {
   userToken.usertoken = jwt.encode(userToken, userSecret);
 });
 
-test('Test #55 - Listar todos os utilizadores', () => {
+test('Test #56 - Listar todos os utilizadores', () => {
   return request(app).get(route)
     .set('Authorization', `bearer ${userToken.usertoken}`)
     .then((res) => {
@@ -38,7 +38,7 @@ test('Test #55 - Listar todos os utilizadores', () => {
     });
 });
 
-test('Test #56 - Listar um user por ID', () => {
+test('Test #57 - Listar um user por ID', () => {
   return app.db('users')
     .insert({
       username: 'goncalosousa',
@@ -55,7 +55,7 @@ test('Test #56 - Listar um user por ID', () => {
     });
 });
 
-test('Test #57 - Inserir um utilizador', () => {
+test('Test #58 - Inserir um utilizador', () => {
   return request(app).post(route)
     .set('Authorization', `bearer ${userToken.usertoken}`)
     .send({
@@ -72,7 +72,7 @@ test('Test #57 - Inserir um utilizador', () => {
     });
 });
 
-test('Test #57.1 - Guardar password encriptada', async () => {
+test('Test #58.1 - Guardar password encriptada', async () => {
   const res = await request(app).post(route)
     .set('Authorization', `bearer ${userToken.usertoken}`)
     .send({
@@ -91,7 +91,7 @@ test('Test #57.1 - Guardar password encriptada', async () => {
   expect(userRegistrationDB.password).not.toBe('goncalo123');
 });
 
-test('Test #58 - Inserir um utilizador sem username', () => {
+test('Test #59 - Inserir um utilizador sem username', () => {
   return request(app).post(route)
     .set('Authorization', `bearer ${userToken.usertoken}`)
     .send({
@@ -106,7 +106,7 @@ test('Test #58 - Inserir um utilizador sem username', () => {
     });
 });
 
-test('Test #59 - Inserir um utilizador sem email', () => {
+test('Test #60 - Inserir um utilizador sem email', () => {
   return request(app).post(route)
     .set('Authorization', `bearer ${userToken.usertoken}`)
     .send({
@@ -121,7 +121,7 @@ test('Test #59 - Inserir um utilizador sem email', () => {
     });
 });
 
-test('Test #60 - Inserir um utilizador sem password', () => {
+test('Test #61 - Inserir um utilizador sem password', () => {
   return request(app).post(route)
     .set('Authorization', `bearer ${userToken.usertoken}`)
     .send({
@@ -136,7 +136,7 @@ test('Test #60 - Inserir um utilizador sem password', () => {
     });
 });
 
-test('Test #61 - Atualizar os dados de um utilizador', () => {
+test('Test #62 - Atualizar os dados de um utilizador', () => {
   return app.db('users')
     .insert({
       username: 'goncalosousa',
