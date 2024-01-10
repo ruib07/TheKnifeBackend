@@ -54,14 +54,14 @@ beforeAll(async () => {
   responsibleRegistration.token = jwt.encode(responsibleRegistration, secret);
 });
 
-test('Test #30 - Listar todos os restaurantes', () => {
+test('Test #31 - Listar todos os restaurantes', () => {
   return request(app).get(route)
     .then((res) => {
       expect(res.status).toBe(200);
     });
 });
 
-test('Test #31 - Listar um restaurante por ID', () => {
+test('Test #32 - Listar um restaurante por ID', () => {
   return app.db('restaurants')
     .insert({
       name: 'La Gusto Italiano',
@@ -87,7 +87,7 @@ test('Test #31 - Listar um restaurante por ID', () => {
     });
 });
 
-test('Test #32 - Inserir um restaurante', () => {
+test('Test #33 - Inserir um restaurante', () => {
   return request(app).post(route)
     .send({
       name: 'La Gusto Italiano',
@@ -111,7 +111,7 @@ test('Test #32 - Inserir um restaurante', () => {
     });
 });
 
-test('Test #33 - Inserir um restaurante sem nome do restaurante', () => {
+test('Test #34 - Inserir um restaurante sem nome do restaurante', () => {
   return request(app).post(route)
     .set('Authorization', `bearer ${responsibleRegistration.token}`)
     .send({
@@ -135,7 +135,7 @@ test('Test #33 - Inserir um restaurante sem nome do restaurante', () => {
     });
 });
 
-test('Test #34 - Inserir um restaurante sem categoria do restaurante', () => {
+test('Test #35 - Inserir um restaurante sem categoria do restaurante', () => {
   return request(app).post(route)
     .set('Authorization', `bearer ${responsibleRegistration.token}`)
     .send({
@@ -159,7 +159,7 @@ test('Test #34 - Inserir um restaurante sem categoria do restaurante', () => {
     });
 });
 
-test('Test #35 - Inserir um restaurante sem descrição do restaurante', () => {
+test('Test #36 - Inserir um restaurante sem descrição do restaurante', () => {
   return request(app).post(route)
     .set('Authorization', `bearer ${responsibleRegistration.token}`)
     .send({
@@ -183,7 +183,7 @@ test('Test #35 - Inserir um restaurante sem descrição do restaurante', () => {
     });
 });
 
-test('Test #36 - Inserir um restaurante sem telefone do restaurante', () => {
+test('Test #37 - Inserir um restaurante sem telefone do restaurante', () => {
   return request(app).post(route)
     .set('Authorization', `bearer ${responsibleRegistration.token}`)
     .send({
@@ -207,7 +207,7 @@ test('Test #36 - Inserir um restaurante sem telefone do restaurante', () => {
     });
 });
 
-test('Test #37 - Inserir um restaurante sem localização do restaurante', () => {
+test('Test #38 - Inserir um restaurante sem localização do restaurante', () => {
   return request(app).post(route)
     .set('Authorization', `bearer ${responsibleRegistration.token}`)
     .send({
@@ -231,7 +231,7 @@ test('Test #37 - Inserir um restaurante sem localização do restaurante', () =>
     });
 });
 
-test('Test #38 - Inserir um restaurante sem imagem do restaurante', () => {
+test('Test #39 - Inserir um restaurante sem imagem do restaurante', () => {
   return request(app).post(route)
     .set('Authorization', `bearer ${responsibleRegistration.token}`)
     .send({
@@ -255,7 +255,7 @@ test('Test #38 - Inserir um restaurante sem imagem do restaurante', () => {
     });
 });
 
-test('Test #39 - Inserir um restaurante sem número de mesas do restaurante', () => {
+test('Test #40 - Inserir um restaurante sem número de mesas do restaurante', () => {
   return request(app).post(route)
     .set('Authorization', `bearer ${responsibleRegistration.token}`)
     .send({
@@ -279,7 +279,7 @@ test('Test #39 - Inserir um restaurante sem número de mesas do restaurante', ()
     });
 });
 
-test('Test #40 - Inserir um restaurante sem capacidade de pessoas', () => {
+test('Test #41 - Inserir um restaurante sem capacidade de pessoas', () => {
   return request(app).post(route)
     .set('Authorization', `bearer ${responsibleRegistration.token}`)
     .send({
@@ -303,7 +303,7 @@ test('Test #40 - Inserir um restaurante sem capacidade de pessoas', () => {
     });
 });
 
-test('Test #41 - Inserir um restaurante sem horário de funcionamento', () => {
+test('Test #42 - Inserir um restaurante sem horário de funcionamento', () => {
   return request(app).post(route)
     .set('Authorization', `bearer ${responsibleRegistration.token}`)
     .send({
@@ -327,7 +327,7 @@ test('Test #41 - Inserir um restaurante sem horário de funcionamento', () => {
     });
 });
 
-test('Test #42 - Inserir um restaurante sem preço médio', () => {
+test('Test #43 - Inserir um restaurante sem preço médio', () => {
   return request(app).post(route)
     .set('Authorization', `bearer ${responsibleRegistration.token}`)
     .send({
@@ -351,7 +351,7 @@ test('Test #42 - Inserir um restaurante sem preço médio', () => {
     });
 });
 
-test('Test #42 - Inserir um restaurante sem horas de abertura', () => {
+test('Test #44 - Inserir um restaurante sem horas de abertura', () => {
   return request(app).post(route)
     .set('Authorization', `bearer ${responsibleRegistration.token}`)
     .send({
@@ -373,7 +373,7 @@ test('Test #42 - Inserir um restaurante sem horas de abertura', () => {
     });
 });
 
-test('Test #43 - Inserir um restaurante sem horas de fecho', () => {
+test('Test #45 - Inserir um restaurante sem horas de fecho', () => {
   return request(app).post(route)
     .set('Authorization', `bearer ${responsibleRegistration.token}`)
     .send({
@@ -395,7 +395,7 @@ test('Test #43 - Inserir um restaurante sem horas de fecho', () => {
     });
 });
 
-test('Test #44 - Atualizar dados de um restaurante', () => {
+test('Test #46 - Atualizar dados de um restaurante', () => {
   return app.db('restaurants')
     .insert({
       name: 'La Gusto Italiano',

@@ -45,7 +45,7 @@ beforeAll(async () => {
   responsibleRegistration.token = jwt.encode(responsibleRegistration, responsiblesecret);
 });
 
-test('Test #22 - Listar todos os perfis de responsáveis de restaurantes', () => {
+test('Test #23 - Listar todos os perfis de responsáveis de restaurantes', () => {
   return request(app).get(route)
     .set('Authorization', `bearer ${responsibleRegistration.token}`)
     .then((res) => {
@@ -53,7 +53,7 @@ test('Test #22 - Listar todos os perfis de responsáveis de restaurantes', () =>
     });
 });
 
-test('Test #23 - Listar um perfil de um responsável de um restaurante por ID', () => {
+test('Test #24 - Listar um perfil de um responsável de um restaurante por ID', () => {
   return app.db('restaurantresponsibles')
     .insert({
       flname: 'Rui Barreto',
@@ -71,7 +71,7 @@ test('Test #23 - Listar um perfil de um responsável de um restaurante por ID', 
     });
 });
 
-test('Test #24 - Inserir um perfil de um responsável de um restaurante', async () => {
+test('Test #25 - Inserir um perfil de um responsável de um restaurante', async () => {
   const registrationRes = await request(app).post(route)
     .set('Authorization', `bearer ${responsibleRegistration.token}`)
     .send({
@@ -87,7 +87,7 @@ test('Test #24 - Inserir um perfil de um responsável de um restaurante', async 
   expect(registrationRes.body).not.toHaveProperty('password');
 });
 
-test('Test #25 - Inserir um perfil de um responsável de um restaurante sem nome', () => {
+test('Test #26 - Inserir um perfil de um responsável de um restaurante sem nome', () => {
   return request(app).post(route)
     .set('Authorization', `bearer ${responsibleRegistration.token}`)
     .send({
@@ -103,7 +103,7 @@ test('Test #25 - Inserir um perfil de um responsável de um restaurante sem nome
     });
 });
 
-test('Test #26 - Inserir um perfil de um responsável de um restaurante sem número de telemóvel', () => {
+test('Test #27 - Inserir um perfil de um responsável de um restaurante sem número de telemóvel', () => {
   return request(app).post(route)
     .set('Authorization', `bearer ${responsibleRegistration.token}`)
     .send({
@@ -119,7 +119,7 @@ test('Test #26 - Inserir um perfil de um responsável de um restaurante sem núm
     });
 });
 
-test('Test #27 - Inserir um perfil de um responsável de um restaurante sem email', () => {
+test('Test #28 - Inserir um perfil de um responsável de um restaurante sem email', () => {
   return request(app).post(route)
     .set('Authorization', `bearer ${responsibleRegistration.token}`)
     .send({
@@ -135,7 +135,7 @@ test('Test #27 - Inserir um perfil de um responsável de um restaurante sem emai
     });
 });
 
-test('Test #28 - Inserir um perfil de um responsável de um restaurante sem password', () => {
+test('Test #29 - Inserir um perfil de um responsável de um restaurante sem password', () => {
   return request(app).post(route)
     .set('Authorization', `bearer ${responsibleRegistration.token}`)
     .send({
@@ -151,7 +151,7 @@ test('Test #28 - Inserir um perfil de um responsável de um restaurante sem pass
     });
 });
 
-test('Test #29 - Atualizar os dados de um perfil de um responsável de um restaurante', () => {
+test('Test #30 - Atualizar os dados de um perfil de um responsável de um restaurante', () => {
   return app.db('restaurantresponsibles')
     .insert({
       flname: 'Rui Barreto',

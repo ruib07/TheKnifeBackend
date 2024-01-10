@@ -4,14 +4,14 @@ const app = require('../../src/app');
 
 const route = '/registerusers';
 
-test('Test #45 - Listar Utilizadores', () => {
+test('Test #47 - Listar Utilizadores', () => {
   return request(app).get(route)
     .then((res) => {
       expect(res.status).toBe(200);
     });
 });
 
-test('Test #46 - Listar um utilizador por ID', () => {
+test('Test #48 - Listar um utilizador por ID', () => {
   return app.db('registerusers')
     .insert({
       username: 'goncalosousa',
@@ -25,7 +25,7 @@ test('Test #46 - Listar um utilizador por ID', () => {
     });
 });
 
-test('Test #47 - Atualizar dados de um utilizador', () => {
+test('Test #49 - Atualizar dados de um utilizador', () => {
   return app.db('registerusers')
     .insert({
       username: 'goncalosousa',
@@ -44,7 +44,7 @@ test('Test #47 - Atualizar dados de um utilizador', () => {
     });
 });
 
-test('Test #48 - Inserir um registo de um utilizador', async () => {
+test('Test #50 - Inserir um registo de um utilizador', async () => {
   const registrationResponse = await request(app).post(route)
     .send({
       username: 'goncalosousa',
@@ -56,7 +56,7 @@ test('Test #48 - Inserir um registo de um utilizador', async () => {
   expect(registrationResponse.body).not.toHaveProperty('password');
 });
 
-test('Test #48.1 - Guardar password encriptada', async () => {
+test('Test #50.1 - Guardar password encriptada', async () => {
   const res = await request(app).post(route)
     .send({
       username: 'goncalosousa',
@@ -72,7 +72,7 @@ test('Test #48.1 - Guardar password encriptada', async () => {
   expect(registerUsersDB.password).not.toBe('goncalo123');
 });
 
-test('Test #49 - Inserir um utilizador sem username', () => {
+test('Test #51 - Inserir um utilizador sem username', () => {
   return request(app).post(route)
     .send({
       email: 'goncalosousa@gmail.com',
@@ -84,7 +84,7 @@ test('Test #49 - Inserir um utilizador sem username', () => {
     });
 });
 
-test('Test #50 - Inserir um utilizador sem email', () => {
+test('Test #52 - Inserir um utilizador sem email', () => {
   return request(app).post(route)
     .send({
       username: 'goncalosousa',
@@ -96,7 +96,7 @@ test('Test #50 - Inserir um utilizador sem email', () => {
     });
 });
 
-test('Test #51 - Inserir um utilizador sem password', () => {
+test('Test #53 - Inserir um utilizador sem password', () => {
   return request(app).post(route)
     .send({
       username: 'goncalosousa',
@@ -108,7 +108,7 @@ test('Test #51 - Inserir um utilizador sem password', () => {
     });
 });
 
-test('Test #53 - Inserir e confirmar a Palavra Passe', async () => {
+test('Test #54 - Inserir e confirmar a Palavra Passe', async () => {
   const registrationResponse = await request(app).post(route)
     .send({
       username: 'goncalosousa',
@@ -128,7 +128,7 @@ test('Test #53 - Inserir e confirmar a Palavra Passe', async () => {
   expect(updatePasswordResponse.body.message).toBe('Palavra Passe atualizada com sucesso!');
 });
 
-test('Test #54 - Inserir Palavra Passes diferentes', async () => {
+test('Test #55 - Inserir Palavra Passes diferentes', async () => {
   const registrationResponse = await request(app).post(route)
     .send({
       username: 'goncalosousa',

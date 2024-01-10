@@ -4,7 +4,7 @@ const app = require('../../src/app');
 
 const route = '/contacts';
 
-test('Test #67 - Inserir dados de contacto', async () => {
+test('Test #72 - Inserir dados de contacto', async () => {
   const contactData = {
     name: 'GoncaloCoutinho',
     email: 'goncalocoutinho@gmail.com',
@@ -26,7 +26,7 @@ test('Test #67 - Inserir dados de contacto', async () => {
   expect(createResponse.body.message).toBe(contactData.message);
 });
 
-test('Test #68 - Inserir um contacto sem nome', () => {
+test('Test #73- Inserir um contacto sem nome', () => {
   return request(app)
     .post(route)
     .send({
@@ -41,7 +41,7 @@ test('Test #68 - Inserir um contacto sem nome', () => {
     });
 });
 
-test('Test #69 - Inserir um contacto sem email', () => {
+test('Test #74 - Inserir um contacto sem email', () => {
   return request(app)
     .post(route)
     .send({
@@ -56,7 +56,7 @@ test('Test #69 - Inserir um contacto sem email', () => {
     });
 });
 
-test('Test #70 - Inserir um contacto sem número de telefone', () => {
+test('Test #75 - Inserir um contacto sem número de telefone', () => {
   return request(app)
     .post(route)
     .send({
@@ -71,7 +71,7 @@ test('Test #70 - Inserir um contacto sem número de telefone', () => {
     });
 });
 
-test('Test #71 - Inserir um contacto sem assunto', () => {
+test('Test #76 - Inserir um contacto sem assunto', () => {
   return request(app)
     .post(route)
     .send({
@@ -86,7 +86,7 @@ test('Test #71 - Inserir um contacto sem assunto', () => {
     });
 });
 
-test('Test #72 - Inserir um contacto sem mensagem', () => {
+test('Test #77 - Inserir um contacto sem mensagem', () => {
   return request(app)
     .post(route)
     .send({
@@ -101,7 +101,7 @@ test('Test #72 - Inserir um contacto sem mensagem', () => {
     });
 });
 
-test('Test #73 - Obter todos os contatos', async () => {
+test('Test #78 - Obter todos os contatos', async () => {
   const getAllResponse = await request(app).get(route);
   expect(getAllResponse.status).toBe(200);
   expect(Array.isArray(getAllResponse.body)).toBe(true);
@@ -109,7 +109,7 @@ test('Test #73 - Obter todos os contatos', async () => {
   expect(getAllResponse.body[0]).toHaveProperty('id');
 });
 
-test('Test #74 - Obter contato por ID', async () => {
+test('Test #79 - Obter contato por ID', async () => {
   const contactId = 1;
   const response = await request(app).get(`${route}/${contactId}`);
   expect(response.status).toBe(200);

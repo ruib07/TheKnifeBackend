@@ -43,7 +43,7 @@ beforeAll(async () => {
   user = { ...res[0] };
 });
 
-test('Test #62 - Receber token ao autenticar para os responsáveis', () => {
+test('Test #63 - Receber token ao autenticar para os responsáveis', () => {
   return app.services.restaurantresponsible.save({
     flname: 'Rui Auth',
     phone: 912345678,
@@ -63,7 +63,7 @@ test('Test #62 - Receber token ao autenticar para os responsáveis', () => {
     });
 });
 
-test('Test #63 - Tentativa de autenticação errada para os responsáveis', () => {
+test('Test #64 - Tentativa de autenticação errada para os responsáveis', () => {
   return app.services.restaurantresponsible.save({
     flname: 'Rui Auth',
     phone: 912345678,
@@ -83,21 +83,21 @@ test('Test #63 - Tentativa de autenticação errada para os responsáveis', () =
     });
 });
 
-test('Test #64 - Aceder a rotas protegidas dos responsáveis #1', () => {
+test('Test #65 - Aceder a rotas protegidas dos responsáveis #1', () => {
   return request(app).get(responsibleRoute)
     .then((res) => {
       expect(res.status).toBe(401);
     });
 });
 
-test('Test #65 - Aceder a rotas protegidas dos responsáveis #2', () => {
+test('Test #66 - Aceder a rotas protegidas dos responsáveis #2', () => {
   return request(app).get(responsibleRouteById)
     .then((res) => {
       expect(res.status).toBe(401);
     });
 });
 
-test('Test #66 - Criar um Responsável', () => {
+test('Test #67 - Criar um Responsável', () => {
   return request(app)
     .post(responsibleSignupRoute)
     .send({
@@ -116,7 +116,7 @@ test('Test #66 - Criar um Responsável', () => {
     });
 });
 
-test('Test #67 - Receber Token User', () => {
+test('Test #68 - Receber Token User', () => {
   return app.services.user.save({
     username: 'Goncalo Auth',
     email: 'goncalosousa@gmail.com',
@@ -130,13 +130,12 @@ test('Test #67 - Receber Token User', () => {
         password: 'goncalo123',
       }))
     .then((res) => {
-      console.log(res);
       expect(res.status).toBe(200);
       expect(res.body).toHaveProperty('usertoken');
     });
 });
 
-test('Test #68 - Autenticação Errado User', () => {
+test('Test #69 - Autenticação Errado User', () => {
   return app.services.user.save({
     username: 'Goncalo Auth',
     email: 'goncalosousa@gmail.com',
@@ -155,14 +154,14 @@ test('Test #68 - Autenticação Errado User', () => {
     });
 });
 
-test('Test #69 - Aceder a rotas protegidas users', () => {
+test('Test #70 - Aceder a rotas protegidas users', () => {
   return request(app).get(userRoute)
     .then((res) => {
       expect(res.status).toBe(401);
     });
 });
 
-test('Test #70 - Criar um Utilizador', () => {
+test('Test #71 - Criar um Utilizador', () => {
   return request(app)
     .post(userSignupRoute)
     .send({

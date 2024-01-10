@@ -444,7 +444,7 @@ test('Test #17 - Inserir um registo de restaurantes sem o preço médio', () => 
     });
 });
 
-test('Test #17 - Inserir um registo de restaurantes sem as horas de abertura', () => {
+test('Test #18 - Inserir um registo de restaurantes sem as horas de abertura', () => {
   return request(app).post(route)
     .send({
       flname: 'Rui Barreto',
@@ -469,7 +469,7 @@ test('Test #17 - Inserir um registo de restaurantes sem as horas de abertura', (
     });
 });
 
-test('Test #18 - Inserir um registo de restaurantes sem as horas de fecho', () => {
+test('Test #19 - Inserir um registo de restaurantes sem as horas de fecho', () => {
   return request(app).post(route)
     .send({
       flname: 'Rui Barreto',
@@ -494,7 +494,7 @@ test('Test #18 - Inserir um registo de restaurantes sem as horas de fecho', () =
     });
 });
 
-test('Test #19 - Inserir e confirmar a Palavra Passe', async () => {
+test('Test #20 - Inserir e confirmar a Palavra Passe', async () => {
   const registrationResponse = await request(app).post(route)
     .send({
       flname: 'Rui Barreto',
@@ -527,7 +527,7 @@ test('Test #19 - Inserir e confirmar a Palavra Passe', async () => {
   expect(updatePasswordResponse.body.message).toBe('Palavra Passe atualizada com sucesso!');
 });
 
-test('Test #20 - Inserir Palavras Passes diferentes', async () => {
+test('Test #21 - Inserir Palavras Passes diferentes', async () => {
   const registrationResponse = await request(app).post(route)
     .send({
       flname: 'Rui Barreto',
@@ -560,7 +560,7 @@ test('Test #20 - Inserir Palavras Passes diferentes', async () => {
   expect(updatePasswordResponse.body.error).toBe('A Palavra Passe deve ser igual nos dois campos!');
 });
 
-test('Test #21 - Atualizar dados de um registo de um restaurante', () => {
+test('Test #22 - Atualizar dados de um registo de um restaurante', () => {
   return app.db('restaurantregistrations')
     .insert({
       flname: 'Rui Barreto',
