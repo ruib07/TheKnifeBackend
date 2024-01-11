@@ -14,6 +14,7 @@
     "secure-mode:mac": "export NODE_ENV=test && npm run knex:migrate:test:mac && jest --watchAll",
     "start:test:mac": "export NODE_ENV=test && npm run knex:migrate:test:mac && node src/server.js",
     "knex:migrate:test:windows": "set NODE_ENV=test&&knex migrate:latest --env test",
+    "knex:rollback:test:windows": "set NODE_ENV=test&&knex migrate:rollback --env test",
     "secure-mode:windows": "set NODE_ENV=test&&npm run knex:migrate:test:windows&& jest --watchAll",
     "start:test:windows": "set NODE_ENV=test&&npm run knex:migrate:test:windows&& node src/server.js"
   },
