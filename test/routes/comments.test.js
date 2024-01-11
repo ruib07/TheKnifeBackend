@@ -1,9 +1,13 @@
 /* eslint-disable no-unused-vars */
 const request = require('supertest');
+const uuid = require('uuid');
 
 const app = require('../../src/app');
 
 const route = '/comments';
+
+const generateUniqueEmailUser = () => `${uuid.v4()}@gmail.com`;
+const generateUniqueEmailResponsible = () => `${uuid.v4()}@gmail.com`;
 
 let userRes;
 let user;
@@ -12,28 +16,32 @@ let responsible;
 let restaurant;
 
 beforeAll(async () => {
+  const userMail = generateUniqueEmailUser();
+
   const registerUser = await app.services.registeruser.save({
     username: 'goncalosousa',
-    email: 'goncalosousa@gmail.com',
-    password: 'goncalo123',
+    email: userMail,
+    password: 'Goncalo@12-AA',
   });
   userRes = { ...registerUser[0] };
 
   const userTable = await app.services.user.save({
     username: 'goncalosousa',
-    email: 'goncalosousa@gmail.com',
-    password: 'goncalo123',
+    email: userMail,
+    password: 'Goncalo@12-AA',
     image: null,
     registeruser_id: userRes.id,
   });
 
   user = { ...userTable };
 
+  const responsibleMail = generateUniqueEmailResponsible();
+
   const restaurantRegistration = await app.services.restaurantregistration.save({
     flname: 'Rui Barreto',
     phone: 912345678,
-    email: 'ruibarreto@gmail.com',
-    password: '12345',
+    email: responsibleMail,
+    password: 'Rui@12-AA',
     name: 'La Gusto Italiano',
     category: 'Comida Italiana',
     desc: 'Restaurante de comida italiana situado em Braga',
@@ -53,8 +61,8 @@ beforeAll(async () => {
   const responsibleRes = await app.services.restaurantresponsible.save({
     flname: 'Rui Barreto',
     phone: 912345678,
-    email: 'ruibarreto@gmail.com',
-    password: '12345',
+    email: responsibleMail,
+    password: 'Rui@12-AA',
     restaurantregistration_id: restaurantRes.id,
   });
 
@@ -118,64 +126,28 @@ test('Test #82 - Inserir um comentário', () => {
     });
 });
 
-test('Test #83 - Inserir um comentário sem username', () => {
-  return request(app).post(route)
-    .send({
-      commentdate: '10-01-2024',
-      review: 10,
-      comment: 'Restaurante com comida excelente!',
-      user_id: user.id,
-      restaurant_id: restaurant.id,
-    })
-    .then((res) => {
-      expect(res.status).toBe(400);
-      expect(res.body.error).toBe('Username é um atributo obrigatório!');
-    });
-});
+describe('Validação de criar um comentário', () => {
+  const testTemplate = (newData, errorMessage) => {
+    return request(app).post(route)
+      .send({
+        username: 'goncalosousa',
+        commentdate: '10-01-2024',
+        review: 10,
+        comment: 'Restaurante com comida excelente!',
+        user_id: user.id,
+        restaurant_id: restaurant.id,
+        ...newData,
+      })
+      .then((res) => {
+        expect(res.status).toBe(400);
+        expect(res.body.error).toBe(errorMessage);
+      });
+  };
 
-test('Test #84 - Inserir um comentário sem data de comentário', () => {
-  return request(app).post(route)
-    .send({
-      username: 'goncalosousa',
-      review: 10,
-      comment: 'Restaurante com comida excelente!',
-      user_id: user.id,
-      restaurant_id: restaurant.id,
-    })
-    .then((res) => {
-      expect(res.status).toBe(400);
-      expect(res.body.error).toBe('Data do comentário é um atributo obrigatório!');
-    });
-});
-
-test('Test #85 - Inserir um comentário sem review', () => {
-  return request(app).post(route)
-    .send({
-      username: 'goncalosousa',
-      commentdate: '10-01-2024',
-      comment: 'Restaurante com comida excelente!',
-      user_id: user.id,
-      restaurant_id: restaurant.id,
-    })
-    .then((res) => {
-      expect(res.status).toBe(400);
-      expect(res.body.error).toBe('Review é um atributo obrigatório!');
-    });
-});
-
-test('Test #86 - Inserir um comentário sem comentário', () => {
-  return request(app).post(route)
-    .send({
-      username: 'goncalosousa',
-      commentdate: '10-01-2024',
-      review: 10,
-      user_id: user.id,
-      restaurant_id: restaurant.id,
-    })
-    .then((res) => {
-      expect(res.status).toBe(400);
-      expect(res.body.error).toBe('Comentário é um atributo obrigatório!');
-    });
+  test('Test #83 - Inserir um comentário sem username', () => testTemplate({ username: null }, 'Username é um atributo obrigatório!'));
+  test('Test #84 - Inserir um comentário sem data de comentário', () => testTemplate({ commentdate: null }, 'Data do comentário é um atributo obrigatório!'));
+  test('Test #85 - Inserir um comentário sem review', () => testTemplate({ review: null }, 'Review é um atributo obrigatório!'));
+  test('Test #86 - Inserir um comentário sem comentário', () => testTemplate({ comment: null }, 'Comentário é um atributo obrigatório!'));
 });
 
 test('Test #87 - Atualizar dados de um comentário', () => {

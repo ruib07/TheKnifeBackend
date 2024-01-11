@@ -1,5 +1,6 @@
-/* eslint-disable no-unused-vars */
 const request = require('supertest');
+const uuid = require('uuid');
+
 const jwt = require('jwt-simple');
 
 const app = require('../../src/app');
@@ -8,15 +9,19 @@ const route = '/restaurantresponsibles';
 
 const responsiblesecret = 'ipca!DWM@202324';
 
+const generateUniqueEmail = () => `${uuid.v4()}@gmail.com`;
+
 let responsible;
 let responsibleRegistration;
 
 beforeAll(async () => {
+  const mail = generateUniqueEmail();
+
   const registrationRes = await app.services.restaurantregistration.save({
     flname: 'Rui Barreto',
     phone: 912345678,
-    email: 'ruibarreto@gmail.com',
-    password: '12345',
+    email: mail,
+    password: 'Rui@12-AA',
     name: 'La Gusto Italiano',
     category: 'Comida Italiana',
     desc: 'Restaurante de comida italiana situado em Braga',
@@ -35,8 +40,8 @@ beforeAll(async () => {
   const res = await app.services.restaurantresponsible.save({
     flname: 'Rui Barreto',
     phone: 912345678,
-    email: 'ruibarreto@gmail.com',
-    password: '12345',
+    email: mail,
+    password: 'Rui@12-AA',
     image: null,
     restaurantregistration_id: responsible.id,
   });
@@ -54,12 +59,14 @@ test('Test #23 - Listar todos os perfis de responsáveis de restaurantes', () =>
 });
 
 test('Test #24 - Listar um perfil de um responsável de um restaurante por ID', () => {
+  const mail = generateUniqueEmail();
+
   return app.db('restaurantresponsibles')
     .insert({
       flname: 'Rui Barreto',
       phone: 912345678,
-      email: 'ruibarreto@gmail.com',
-      password: '12345',
+      email: mail,
+      password: 'Rui@12-AA',
       image: null,
       restaurantregistration_id: responsible.id,
     }, ['id'])
@@ -71,93 +78,61 @@ test('Test #24 - Listar um perfil de um responsável de um restaurante por ID', 
     });
 });
 
-test('Test #25 - Inserir um perfil de um responsável de um restaurante', async () => {
-  const registrationRes = await request(app).post(route)
-    .set('Authorization', `bearer ${responsibleRegistration.token}`)
-    .send({
-      flname: 'Rui Barreto',
-      phone: 912345678,
-      email: 'ruibarreto@gmail.com',
-      password: '12345',
-      image: null,
-      restaurantregistration_id: responsible.id,
-    });
+test('Test #25 - Inserir um perfil de um responsável de um restaurante', () => {
+  const mail = generateUniqueEmail();
 
-  expect(registrationRes.status).toBe(201);
-  expect(registrationRes.body).not.toHaveProperty('password');
-});
-
-test('Test #26 - Inserir um perfil de um responsável de um restaurante sem nome', () => {
-  return request(app).post(route)
-    .set('Authorization', `bearer ${responsibleRegistration.token}`)
-    .send({
-      rphone: 912345678,
-      email: 'ruibarreto@gmail.com',
-      password: '12345',
-      image: null,
-      restaurantregistration_id: responsible.id,
-    })
-    .then((res) => {
-      expect(res.status).toBe(400);
-      expect(res.body.error).toBe('Nome do responsável do restaurante obrigatório!');
-    });
-});
-
-test('Test #27 - Inserir um perfil de um responsável de um restaurante sem número de telemóvel', () => {
-  return request(app).post(route)
-    .set('Authorization', `bearer ${responsibleRegistration.token}`)
-    .send({
-      flname: 'Rui Barreto',
-      email: 'ruibarreto@gmail.com',
-      password: '12345',
-      image: null,
-      restaurantregistration_id: responsible.id,
-    })
-    .then((res) => {
-      expect(res.status).toBe(400);
-      expect(res.body.error).toBe('Telemóvel do responsável do restaurante obrigatório!');
-    });
-});
-
-test('Test #28 - Inserir um perfil de um responsável de um restaurante sem email', () => {
   return request(app).post(route)
     .set('Authorization', `bearer ${responsibleRegistration.token}`)
     .send({
       flname: 'Rui Barreto',
       phone: 912345678,
-      password: '12345',
+      email: mail,
+      password: 'Rui@12-AA',
       image: null,
       restaurantregistration_id: responsible.id,
     })
     .then((res) => {
-      expect(res.status).toBe(400);
-      expect(res.body.error).toBe('Email do responsável do restaurante obrigatório!');
+      expect(res.status).toBe(201);
+      expect(res.body).not.toHaveProperty('password');
     });
 });
 
-test('Test #29 - Inserir um perfil de um responsável de um restaurante sem password', () => {
-  return request(app).post(route)
-    .set('Authorization', `bearer ${responsibleRegistration.token}`)
-    .send({
-      flname: 'Rui Barreto',
-      phone: 912345678,
-      email: 'ruibarreto@gmail.com',
-      image: null,
-      restaurantregistration_id: responsible.id,
-    })
-    .then((res) => {
-      expect(res.status).toBe(400);
-      expect(res.body.error).toBe('Password do responsável do restaurante obrigatório!');
-    });
+describe('Validação de criar um responsável de um restaurante', () => {
+  const mail = generateUniqueEmail();
+
+  const testTemplate = (newData, errorMessage) => {
+    return request(app).post(route)
+      .set('Authorization', `bearer ${responsibleRegistration.token}`)
+      .send({
+        flname: 'Rui Barreto',
+        phone: 912345678,
+        email: mail,
+        password: 'Rui@12-AA',
+        image: null,
+        restaurantregistration_id: responsible.id,
+        ...newData,
+      })
+      .then((res) => {
+        expect(res.status).toBe(400);
+        expect(res.body.error).toBe(errorMessage);
+      });
+  };
+
+  test('Test #26 - Inserir um perfil de um responsável sem nome', () => testTemplate({ flname: null }, 'Nome do responsável do restaurante obrigatório!'));
+  test('Test #27 - Inserir um perfil de um responsável sem telemóvel', () => testTemplate({ phone: null }, 'Telemóvel do responsável do restaurante obrigatório!'));
+  test('Test #28 - Inserir um perfil de um responsável sem email', () => testTemplate({ email: null }, 'Email do responsável do restaurante obrigatório!'));
+  test('Test #29 - Inserir um perfil de um responsável sem password', () => testTemplate({ password: null }, 'Password do responsável do restaurante obrigatório!'));
 });
 
 test('Test #30 - Atualizar os dados de um perfil de um responsável de um restaurante', () => {
+  const mail = generateUniqueEmail();
+
   return app.db('restaurantresponsibles')
     .insert({
       flname: 'Rui Barreto',
       phone: 912345678,
-      email: 'ruibarreto@gmail.com',
-      password: '12345',
+      email: mail,
+      password: 'Rui@12-AA',
       image: null,
       restaurantregistration_id: responsible.id,
     }, ['id'])
@@ -167,7 +142,7 @@ test('Test #30 - Atualizar os dados de um perfil de um responsável de um restau
         flname: 'Rui Barreto',
         phone: 964769078,
         email: 'ruibarreto123@gmail.com',
-        password: '54321',
+        password: 'Rui@12-BB',
         image: 'https://img.freepik.com/free-photo/portrait-handsome-man-with-dark-hairstyle-bristle-toothy-smile-dressed-white-sweatshirt-feels-very-glad-poses-indoor-pleased-european-guy-being-good-mood-smiles-positively-emotions-concept_273609-61405.jpg',
         restaurantregistration_id: responsible.id,
       }))

@@ -1,5 +1,3 @@
-const bcrypt = require('bcrypt-nodejs');
-
 module.exports = (app) => {
   const getAll = (req, res, next) => {
     app.services.registeruser.getAll()

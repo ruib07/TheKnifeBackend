@@ -33,6 +33,16 @@ module.exports = (app) => {
     return bcrypt.hashSync(pass, salt);
   };
 
+  const validatePassword = (password) => {
+    const hasLowercase = /[a-z]/.test(password);
+    const hasUppercase = /[A-Z]/.test(password);
+    const hasDigit = /\d/.test(password);
+    const hasSpecialChar = /[@$!%*?&]/.test(password);
+    const isLengthValid = password.length >= 9;
+
+    return hasLowercase && hasUppercase && hasDigit && hasSpecialChar && isLengthValid;
+  };
+
   const save = async (restaurantregistration) => {
     if (!restaurantregistration.flname) throw new ValidationError('Nome do responsável do restaurante obrigatório!');
     if (!restaurantregistration.phone) throw new ValidationError('Telemóvel do responsável do restaurante obrigatório!');
@@ -50,6 +60,13 @@ module.exports = (app) => {
     if (!restaurantregistration.averageprice) throw new ValidationError('Preço médio é um atributo obrigatório!');
     if (!restaurantregistration.openinghours) throw new ValidationError('Horas de abertura são um atributo obrigatório!');
     if (!restaurantregistration.closinghours) throw new ValidationError('Horas de fecho são um atributo obrigatório!');
+
+    if (!validatePassword(restaurantregistration.password)) {
+      throw new ValidationError('A password não cumpre os requisitos');
+    }
+
+    const restaurantRegistrationDB = await find({ email: restaurantregistration.email });
+    if (restaurantRegistrationDB) throw new ValidationError('Email duplicado na BD');
 
     const newRestaurantRegistration = { ...restaurantregistration };
     newRestaurantRegistration.password = getPasswordHash(restaurantregistration.password);
@@ -75,6 +92,10 @@ module.exports = (app) => {
   };
 
   const updatePassword = async (id, newPassword, confirmNewPassword) => {
+    if (!validatePassword(newPassword)) {
+      throw new ValidationError('A password não cumpre os requisitos');
+    }
+
     const restaurantResgistration = await app.services.restaurantregistration.find({ id });
 
     if (!restaurantResgistration) {
@@ -94,6 +115,9 @@ module.exports = (app) => {
   };
 
   const update = (id, restaurantRes) => {
+    if (!validatePassword(restaurantRes.password)) {
+      throw new ValidationError('A password não cumpre os requisitos');
+    }
     const newUpdateRestaurantRegistration = { ...restaurantRes };
     newUpdateRestaurantRegistration.password = getPasswordHash(restaurantRes.password);
 

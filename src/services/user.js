@@ -26,6 +26,9 @@ module.exports = (app) => {
       if (!registeruser.email) throw new ValidationError('Email é um atributo obrigatório!');
       if (!registeruser.password) throw new ValidationError('Password é um atributo obrigatório!');
 
+      const userDB = await find({ email: registeruser.email });
+      if (userDB) throw new ValidationError('Email duplicado na BD');
+
       const newUser = { ...registeruser };
       newUser.password = getPasswordHash(registeruser.password);
 
