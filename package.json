@@ -10,9 +10,12 @@
     "start": "node src/server.js",
     "test": "jest",
     "lint": "eslint src/** test/** --fix",
+    "test:mac": "export NODE_ENV=test&&jest --coverage --runInBand --forceExit",
     "knex:migrate:test:mac": "export NODE_ENV=test && knex migrate:latest --env test",
+    "knex:rollback:test:mac": "export NODE_ENV=test&&knex migrate:rollback --env test",
     "secure-mode:mac": "export NODE_ENV=test && npm run knex:migrate:test:mac && jest --watchAll",
     "start:test:mac": "export NODE_ENV=test && npm run knex:migrate:test:mac && node src/server.js",
+    "test:windows": "set NODE_ENV=test&&jest --coverage --runInBand --forceExit",
     "knex:migrate:test:windows": "set NODE_ENV=test&&knex migrate:latest --env test",
     "knex:rollback:test:windows": "set NODE_ENV=test&&knex migrate:rollback --env test",
     "secure-mode:windows": "set NODE_ENV=test&&npm run knex:migrate:test:windows&& jest --watchAll",
@@ -22,6 +25,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/uuid": "^9.0.7",
     "@typescript-eslint/eslint-plugin": "^6.13.2",
     "eslint": "^8.55.0",
     "eslint-config-airbnb-base": "^15.0.0",
@@ -45,6 +49,7 @@
     "knex": "^3.0.1",
     "passport": "^0.7.0",
     "passport-jwt": "^4.0.1",
-    "pg": "8.11.3"
+    "pg": "8.11.3",
+    "uuid": "^9.0.1"
   }
 }

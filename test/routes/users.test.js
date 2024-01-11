@@ -1,4 +1,6 @@
 const request = require('supertest');
+const uuid = require('uuid');
+
 const jwt = require('jwt-simple');
 
 const app = require('../../src/app');
@@ -7,21 +9,25 @@ const route = '/users';
 
 const userSecret = 'ipcaDWM@202324';
 
+const generateUniqueEmail = () => `${uuid.v4()}@gmail.com`;
+
 let user;
 let userToken;
 
 beforeAll(async () => {
+  const userMail = generateUniqueEmail();
+
   const res = await app.services.registeruser.save({
     username: 'goncalosousa',
-    email: 'goncalosousa@gmail.com',
-    password: 'goncalo123',
+    email: userMail,
+    password: 'Goncalo@12-AA',
   });
   user = { ...res[0] };
 
   const userRes = await app.services.user.save({
     username: 'goncalosousa',
-    email: 'goncalosousa@gmail.com',
-    password: 'goncalo123',
+    email: userMail,
+    password: 'Goncalo@12-AA',
     image: null,
     registeruser_id: user.id,
   });
@@ -39,11 +45,13 @@ test('Test #56 - Listar todos os utilizadores', () => {
 });
 
 test('Test #57 - Listar um user por ID', () => {
+  const userMail = generateUniqueEmail();
+
   return app.db('users')
     .insert({
       username: 'goncalosousa',
-      email: 'goncalosousa@gmail.com',
-      password: 'goncalo123',
+      email: userMail,
+      password: 'Goncalo@12-AA',
       image: null,
       registeruser_id: user.id,
     }, ['id'])
@@ -56,12 +64,14 @@ test('Test #57 - Listar um user por ID', () => {
 });
 
 test('Test #58 - Inserir um utilizador', () => {
+  const userMail = generateUniqueEmail();
+
   return request(app).post(route)
     .set('Authorization', `bearer ${userToken.usertoken}`)
     .send({
       username: 'goncalosousa',
-      email: 'goncalosousa@gmail.com',
-      password: 'goncalo123',
+      email: userMail,
+      password: 'Goncalo@12-AA',
       image: null,
       registeruser_id: user.id,
     })
@@ -73,12 +83,14 @@ test('Test #58 - Inserir um utilizador', () => {
 });
 
 test('Test #58.1 - Guardar password encriptada', async () => {
+  const userMail = generateUniqueEmail();
+
   const res = await request(app).post(route)
     .set('Authorization', `bearer ${userToken.usertoken}`)
     .send({
       username: 'goncalosousa',
-      email: 'goncalosousa@gmail.com',
-      password: 'goncalo123',
+      email: userMail,
+      password: 'Goncalo@12-AA',
       image: null,
       registeruser_id: user.id,
     });
@@ -91,57 +103,39 @@ test('Test #58.1 - Guardar password encriptada', async () => {
   expect(userRegistrationDB.password).not.toBe('goncalo123');
 });
 
-test('Test #59 - Inserir um utilizador sem username', () => {
-  return request(app).post(route)
-    .set('Authorization', `bearer ${userToken.usertoken}`)
-    .send({
-      email: 'goncalosousa@gmail.com',
-      password: 'goncalo123',
-      image: null,
-      registeruser_id: user.id,
-    })
-    .then((res) => {
-      expect(res.status).toBe(400);
-      expect(res.body.error).toBe('Username é um atributo obrigatório!');
-    });
-});
+describe('Validação de criar um user', () => {
+  const userMail = generateUniqueEmail();
 
-test('Test #60 - Inserir um utilizador sem email', () => {
-  return request(app).post(route)
-    .set('Authorization', `bearer ${userToken.usertoken}`)
-    .send({
-      username: 'goncalosousa',
-      password: 'goncalo123',
-      image: null,
-      registeruser_id: user.id,
-    })
-    .then((res) => {
-      expect(res.status).toBe(400);
-      expect(res.body.error).toBe('Email é um atributo obrigatório!');
-    });
-});
+  const testTemplate = (newData, errorMessage) => {
+    return request(app).post(route)
+      .set('Authorization', `bearer ${userToken.usertoken}`)
+      .send({
+        username: 'goncalosousa',
+        email: userMail,
+        password: 'Goncalo@12-AA',
+        image: null,
+        registeruser_id: user.id,
+        ...newData,
+      })
+      .then((res) => {
+        expect(res.status).toBe(400);
+        expect(res.body.error).toBe(errorMessage);
+      });
+  };
 
-test('Test #61 - Inserir um utilizador sem password', () => {
-  return request(app).post(route)
-    .set('Authorization', `bearer ${userToken.usertoken}`)
-    .send({
-      username: 'goncalosousa',
-      email: 'goncalosousa@gmail.com',
-      image: null,
-      registeruser_id: user.id,
-    })
-    .then((res) => {
-      expect(res.status).toBe(400);
-      expect(res.body.error).toBe('Password é um atributo obrigatório!');
-    });
+  test('Test #59 - Inserir um utilizador sem username', () => testTemplate({ username: null }, 'Username é um atributo obrigatório!'));
+  test('Test #60 - Inserir um utilizador sem email', () => testTemplate({ email: null }, 'Email é um atributo obrigatório!'));
+  test('Test #61 - Inserir um utilizador sem password', () => testTemplate({ password: null }, 'Password é um atributo obrigatório!'));
 });
 
 test('Test #62 - Atualizar os dados de um utilizador', () => {
+  const userMail = generateUniqueEmail();
+
   return app.db('users')
     .insert({
       username: 'goncalosousa',
-      email: 'goncalosousa@gmail.com',
-      password: 'goncalo123',
+      email: userMail,
+      password: 'Goncalo@12-AA',
       image: null,
       registeruser_id: user.id,
     }, ['id'])
@@ -150,7 +144,7 @@ test('Test #62 - Atualizar os dados de um utilizador', () => {
       .send({
         username: 'goncalocoutinhosousa',
         email: 'goncalosousa123@gmail.com',
-        password: 'goncalo321',
+        password: 'Goncalo@12-BB',
         image: null,
         registeruser_id: user.id,
       }))

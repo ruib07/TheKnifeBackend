@@ -1,4 +1,6 @@
 const request = require('supertest');
+const uuid = require('uuid');
+
 const app = require('../../src/app');
 
 const responsibleSigninRoute = '/auths/responsiblesignin';
@@ -6,20 +8,26 @@ const responsibleSignupRoute = '/auths/responsiblesignup';
 const responsibleRoute = '/restaurantresponsibles';
 const responsibleRouteById = '/restaurantresponsibles/:id';
 
+const generateUniqueEmailResponsible = () => `${uuid.v4()}@gmail.com`;
+
 let responsible;
 
 const userSigninRoute = '/auths/usersignin';
 const userSignupRoute = '/auths/usersignup';
 const userRoute = '/users';
 
+const generateUniqueEmailUser = () => `${uuid.v4()}@gmail.com`;
+
 let user;
 
 beforeAll(async () => {
+  const responsibleMail = generateUniqueEmailResponsible();
+
   const registrationRes = await app.services.restaurantregistration.save({
     flname: 'Rui Barreto',
     phone: 912345678,
-    email: 'ruibarreto@gmail.com',
-    password: '12345',
+    email: responsibleMail,
+    password: 'Rui@12-AA',
     name: 'La Gusto Italiano',
     category: 'Comida Italiana',
     desc: 'Restaurante de comida italiana situado em Braga',
@@ -35,27 +43,31 @@ beforeAll(async () => {
   });
   responsible = { ...registrationRes[0] };
 
+  const userMail = generateUniqueEmailUser();
+
   const res = await app.services.registeruser.save({
     username: 'goncalosousa',
-    email: 'goncalosousa@gmail.com',
-    password: 'goncalo123',
+    email: userMail,
+    password: 'Goncalo@12-AA',
   });
   user = { ...res[0] };
 });
 
 test('Test #63 - Receber token ao autenticar para os responsáveis', () => {
+  const responsibleMail = generateUniqueEmailResponsible();
+
   return app.services.restaurantresponsible.save({
     flname: 'Rui Auth',
     phone: 912345678,
-    email: 'ruibarreto@gmail.com',
-    password: '12345',
+    email: responsibleMail,
+    password: 'Rui@12-AA',
     image: null,
     restaurantregistration_id: responsible.id,
   })
     .then(() => request(app).post(responsibleSigninRoute)
       .send({
-        email: 'ruibarreto@gmail.com',
-        password: '12345',
+        email: responsibleMail,
+        password: 'Rui@12-AA',
       }))
     .then((res) => {
       expect(res.status).toBe(200);
@@ -64,17 +76,19 @@ test('Test #63 - Receber token ao autenticar para os responsáveis', () => {
 });
 
 test('Test #64 - Tentativa de autenticação errada para os responsáveis', () => {
+  const responsibleMail = generateUniqueEmailResponsible();
+
   return app.services.restaurantresponsible.save({
     flname: 'Rui Auth',
     phone: 912345678,
-    email: 'ruibarreto@gmail.com',
-    password: '12345',
+    email: responsibleMail,
+    password: 'Rui@12-AA',
     image: null,
     restaurantregistration_id: responsible.id,
   })
     .then(() => request(app).post(responsibleSigninRoute)
       .send({
-        email: 'ruibarreto@gmail.com',
+        email: responsibleMail,
         password: '67890',
       }))
     .then((res) => {
@@ -98,13 +112,15 @@ test('Test #66 - Aceder a rotas protegidas dos responsáveis #2', () => {
 });
 
 test('Test #67 - Criar um Responsável', () => {
+  const responsibleMail = generateUniqueEmailResponsible();
+
   return request(app)
     .post(responsibleSignupRoute)
     .send({
       flname: 'Rui Signup',
       phone: 912345678,
-      email: 'ruibarreto@gmail.com',
-      password: '12345',
+      email: responsibleMail,
+      password: 'Rui@12-AA',
       image: null,
       restaurantregistration_id: responsible.id,
     })
@@ -117,17 +133,19 @@ test('Test #67 - Criar um Responsável', () => {
 });
 
 test('Test #68 - Receber Token User', () => {
+  const userMail = generateUniqueEmailUser();
+
   return app.services.user.save({
     username: 'Goncalo Auth',
-    email: 'goncalosousa@gmail.com',
-    password: 'goncalo123',
+    email: userMail,
+    password: 'Goncalo@12-AA',
     image: null,
     registeruser_id: user.id,
   })
     .then(() => request(app).post(userSigninRoute)
       .send({
-        email: 'goncalosousa@gmail.com',
-        password: 'goncalo123',
+        email: userMail,
+        password: 'Goncalo@12-AA',
       }))
     .then((res) => {
       expect(res.status).toBe(200);
@@ -136,17 +154,19 @@ test('Test #68 - Receber Token User', () => {
 });
 
 test('Test #69 - Autenticação Errado User', () => {
+  const userMail = generateUniqueEmailUser();
+
   return app.services.user.save({
     username: 'Goncalo Auth',
-    email: 'goncalosousa@gmail.com',
-    password: 'goncalo123',
+    email: userMail,
+    password: 'Goncalo@12-AA',
     image: null,
     registeruser_id: user.id,
   })
     .then(() => request(app).post(userSigninRoute)
       .send({
-        email: 'goncalosousa@gmail.com',
-        password: 'goncalo12',
+        email: userMail,
+        password: 'Goncalo@12-BB',
       }))
     .then((res) => {
       expect(res.status).toBe(400);
@@ -162,12 +182,14 @@ test('Test #70 - Aceder a rotas protegidas users', () => {
 });
 
 test('Test #71 - Criar um Utilizador', () => {
+  const userMail = generateUniqueEmailUser();
+
   return request(app)
     .post(userSignupRoute)
     .send({
       username: 'Goncalo Signup',
-      email: 'goncalo123@gmail.com',
-      password: '12345',
+      email: userMail,
+      password: 'Goncalo@12-AA',
       image: null,
       registeruser_id: user.id,
     })

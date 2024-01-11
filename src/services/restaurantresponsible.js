@@ -27,6 +27,9 @@ module.exports = (app) => {
     if (!registerrestaurantresponsible.email) throw new ValidationError('Email do responsável do restaurante obrigatório!');
     if (!registerrestaurantresponsible.password) throw new ValidationError('Password do responsável do restaurante obrigatório!');
 
+    const responsibleDB = await find({ email: registerrestaurantresponsible.email });
+    if (responsibleDB) throw new ValidationError('Email duplicado na BD');
+
     const newRestaurantResponsible = { ...registerrestaurantresponsible };
     newRestaurantResponsible.password = getPasswordHash(registerrestaurantresponsible.password);
 

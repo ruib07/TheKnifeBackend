@@ -20,10 +20,27 @@ module.exports = (app) => {
     return bcrypt.hashSync(pass, salt);
   };
 
+  const validatePassword = (password) => {
+    const hasLowercase = /[a-z]/.test(password);
+    const hasUppercase = /[A-Z]/.test(password);
+    const hasDigit = /\d/.test(password);
+    const hasSpecialChar = /[@$!%*?&]/.test(password);
+    const isLengthValid = password.length >= 9;
+
+    return hasLowercase && hasUppercase && hasDigit && hasSpecialChar && isLengthValid;
+  };
+
   const save = async (registeruser) => {
     if (!registeruser.username) throw new ValidationError('Username é um atributo obrigatório!');
     if (!registeruser.email) throw new ValidationError('Email é um atributo obrigatório!');
     if (!registeruser.password) throw new ValidationError('Password é um atributo obrigatório!');
+
+    if (!validatePassword(registeruser.password)) {
+      throw new ValidationError('A password não cumpre os requisitos');
+    }
+
+    const registerUserDB = await find({ email: registeruser.email });
+    if (registerUserDB) throw new ValidationError('Email duplicado na BD');
 
     const newRegisterUser = { ...registeruser };
     newRegisterUser.password = getPasswordHash(registeruser.password);
@@ -35,7 +52,11 @@ module.exports = (app) => {
     ]);
   };
 
-  const update = (id, userRes) => {
+  const update = async (id, userRes) => {
+    if (!validatePassword(userRes.password)) {
+      throw new ValidationError('A password não cumpre os requisitos');
+    }
+
     const newUpdateUserRegistration = { ...userRes };
     newUpdateUserRegistration.password = getPasswordHash(userRes.password);
 
@@ -49,6 +70,10 @@ module.exports = (app) => {
   };
 
   const updatePassword = async (id, newPassword, confirmNewPassword) => {
+    if (!validatePassword(newPassword)) {
+      throw new ValidationError('A password não cumpre os requisitos');
+    }
+
     const user = await app.services.registeruser.find({ id });
     if (!user) {
       return { error: 'Utilizador não encontrado!' };
