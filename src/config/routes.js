@@ -77,4 +77,16 @@ module.exports = (app) => {
     .get(app.routes.comments.getId)
     .put(app.routes.comments.update)
     .delete(app.routes.comments.remove);
+
+  // Reservation General Routes:
+  app.route('/reservations')
+  .get(app.routes.reservations.getAll)
+  .post(app.routes.reservations.create);
+
+  // Reservation Routes by ID:
+  app.route('/reservations/:id')
+  .get(app.routes.reservations.getId)
+  .delete(app.routes.reservations.remove)
+  .put(app.routes.reservations.update);
+
 };
