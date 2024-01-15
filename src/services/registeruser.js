@@ -69,32 +69,56 @@ module.exports = (app) => {
       ]);
   };
 
-  const updatePassword = async (id, newPassword, confirmNewPassword) => {
-    if (!validatePassword(newPassword)) {
-      throw new ValidationError('A password não cumpre os requisitos');
-    }
-
-    const user = await app.services.registeruser.find({ id });
+  const confirmEmail = async (email) => {
+    const user = await find({ email });
+  
     if (!user) {
-      return { error: 'Utilizador não encontrado!' };
+      return { error: 'Email não encontrado!' };
     }
-
-    if (newPassword !== confirmNewPassword) {
-      return { error: 'A Palavra Passe deve ser igual nos dois campos!' };
+  
+    if (user.confirmed) {
+      return { error: 'Email já confirmado!' };
     }
-
-    const updatePasswords = await Promise.all([
-      app.db('registerusers').where({ id }).update({ password: newPassword }, '*'),
-      app.db('users').where({ id }).update({ password: newPassword }, '*'),
-    ]);
-
+  
     return { success: true };
+  };
+
+  const updatePassword = async (email, newPassword, confirmNewPassword) => {
+    try {
+      if (!validatePassword(newPassword)) {
+        throw new ValidationError('A password não cumpre os requisitos');
+      }
+    
+      const user = await app.services.registeruser.find({ email });
+      if (!user) {
+        return { error: 'Utilizador não encontrado!' };
+      }
+    
+      if (newPassword !== confirmNewPassword) {
+        return { error: 'A Palavra Passe deve ser igual nos dois campos!' };
+      }
+    
+      const updatePasswords = await Promise.all([
+        app.db('registerusers').where({ email }).update({ password: getPasswordHash(newPassword) }, '*'),
+        app.db('users').where({ email }).update({ password: getPasswordHash(newPassword) }, '*'),
+      ]);
+    
+      return { success: true };
+    } catch (error) {
+      if (error instanceof ValidationError) {
+        return { error: error.message };
+      }
+    
+      console.error(error);
+      return { error: 'Erro desconhecido' };
+    }
   };
 
   return {
     getAll,
     find,
     save,
+    confirmEmail,
     update,
     updatePassword,
   };

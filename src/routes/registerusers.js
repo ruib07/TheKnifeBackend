@@ -26,7 +26,7 @@ module.exports = (app) => {
     const { newPassword, confirmNewPassword } = req.body;
 
     const result = await app.services.registeruser.updatePassword(
-      req.params.id,
+      req.params.email,
       newPassword,
       confirmNewPassword,
     );
@@ -34,6 +34,21 @@ module.exports = (app) => {
     if (result.error) return res.status(400).json(result);
     return res.status(200).json({ message: 'Palavra Passe atualizada com sucesso!' });
   };
+
+  const confirmEmail = async (req, res, next) => {
+    const { email } = req.params;
+    try {
+      const result = await app.services.registeruser.confirmEmail(email);
+  
+      if (result.error) {
+        return res.status(404).json({ error: result.error });
+      }
+  
+      return res.status(200).json({ message: 'Email confirmado com sucesso!' });
+    } catch (err) {
+      next(err);
+    }
+  };  
 
   const update = (req, res, next) => {
     app.services.registeruser.update(req.params.id, req.body)
@@ -47,6 +62,7 @@ module.exports = (app) => {
     getAll,
     getId,
     create,
+    confirmEmail,
     update,
     updatePassword,
   };

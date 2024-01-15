@@ -49,9 +49,12 @@ module.exports = (app) => {
     .get(app.routes.registerusers.getId)
     .put(app.routes.registerusers.update);
 
-  app.route('/registerusers/:id/updatepassword')
+  app.route('/registerusers/:email/updatepassword')
     .put(app.routes.registerusers.updatePassword);
 
+  app.route('/registerusers/confirm-email/:email')
+    .get(app.routes.registerusers.confirmEmail);
+    
   app.route('/users')
     .all(app.config.passportuser.userauthenticate())
     .get(app.routes.users.getAll)
