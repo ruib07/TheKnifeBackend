@@ -118,7 +118,7 @@ test('Test #54 - Inserir e confirmar a Palavra Passe', async () => {
 
   expect(registrationResponse.status).toBe(201);
 
-  const updatePasswordResponse = await request(app).put(`${route}/${registrationResponse.body.id}/updatepassword`)
+  const updatePasswordResponse = await request(app).put(`${route}/${registrationResponse.body.email}/updatepassword`)
     .send({
       newPassword: 'Goncalo@13-AA',
       confirmNewPassword: 'Goncalo@13-AA',
@@ -140,11 +140,29 @@ test('Test #55 - Inserir e confirmar a Palavra Passe com palavras-passe diferent
 
   expect(registrationResponse.status).toBe(201);
 
-  const updatePasswordResponse = await request(app).put(`${route}/${registrationResponse.body.id}/updatepassword`)
+  const updatePasswordResponse = await request(app).put(`${route}/${registrationResponse.body.email}/updatepassword`)
     .send({
       newPassword: 'Goncalo@13-AA',
       confirmNewPassword: 'Goncalo@14-AA',
     });
 
   expect(updatePasswordResponse.status).toBe(400);
+});
+
+test('Test #56 - Verificação de email que exite', async () => {
+  const existingEmail = 'goncalosousa@gmail.com';
+
+  const confirmationEmailResponse = await request(app).get(`/registerusers/confirm-email/${existingEmail}`);
+
+  expect(confirmationEmailResponse.status).toBe(200);
+  expect(confirmationEmailResponse.body.message).toBe('Email confirmado com sucesso!');
+});
+
+test('Test #57 - Verificação de email que não existe', async () => {
+  const nonexistentEmail = 'email_que_nao_existe@gmail.com';
+
+  const confirmationEmailResponse = await request(app).get(`/registerusers/confirm-email/${nonexistentEmail}`);
+
+  expect(confirmationEmailResponse.status).toBe(404);
+  expect(confirmationEmailResponse.body.error).toBe('Email não encontrado!');
 });
