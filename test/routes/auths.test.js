@@ -33,7 +33,7 @@ beforeAll(async () => {
     desc: 'Restaurante de comida italiana situado em Braga',
     rphone: 253456789,
     location: 'Rua Gonçalo Sousa 285',
-    image: '/Frontend/theknife-website/src/assets/logos/TheKnife-LogoDark.png',
+    image: 'https://t4.ftcdn.net/jpg/02/94/26/33/360_F_294263329_1IgvqNgDbhmQNgDxkhlW433uOFuIDar4.jpg',
     numberoftables: 10,
     capacity: 200,
     openingdays: 'Aberto de segunda a sábado',
@@ -53,7 +53,7 @@ beforeAll(async () => {
   user = { ...res[0] };
 });
 
-test('Test #63 - Receber token ao autenticar para os responsáveis', () => {
+test('Test #67 - Receber token ao autenticar para os responsáveis', () => {
   const responsibleMail = generateUniqueEmailResponsible();
 
   return app.services.restaurantresponsible.save({
@@ -75,7 +75,7 @@ test('Test #63 - Receber token ao autenticar para os responsáveis', () => {
     });
 });
 
-test('Test #64 - Tentativa de autenticação errada para os responsáveis', () => {
+test('Test #68 - Tentativa de autenticação errada para os responsáveis', () => {
   const responsibleMail = generateUniqueEmailResponsible();
 
   return app.services.restaurantresponsible.save({
@@ -97,21 +97,21 @@ test('Test #64 - Tentativa de autenticação errada para os responsáveis', () =
     });
 });
 
-test('Test #65 - Aceder a rotas protegidas dos responsáveis #1', () => {
+test('Test #69 - Aceder a rotas protegidas dos responsáveis #1', () => {
   return request(app).get(responsibleRoute)
     .then((res) => {
       expect(res.status).toBe(401);
     });
 });
 
-test('Test #66 - Aceder a rotas protegidas dos responsáveis #2', () => {
+test('Test #70 - Aceder a rotas protegidas dos responsáveis #2', () => {
   return request(app).get(responsibleRouteById)
     .then((res) => {
       expect(res.status).toBe(401);
     });
 });
 
-test('Test #67 - Criar um Responsável', () => {
+test('Test #71 - Criar um Responsável', () => {
   const responsibleMail = generateUniqueEmailResponsible();
 
   return request(app)
@@ -132,7 +132,7 @@ test('Test #67 - Criar um Responsável', () => {
     });
 });
 
-test('Test #68 - Receber Token User', () => {
+test('Test #72 - Receber Token User', () => {
   const userMail = generateUniqueEmailUser();
 
   return app.services.user.save({
@@ -153,7 +153,7 @@ test('Test #68 - Receber Token User', () => {
     });
 });
 
-test('Test #69 - Autenticação Errado User', () => {
+test('Test #73 - Autenticação Errado User', () => {
   const userMail = generateUniqueEmailUser();
 
   return app.services.user.save({
@@ -174,14 +174,14 @@ test('Test #69 - Autenticação Errado User', () => {
     });
 });
 
-test('Test #70 - Aceder a rotas protegidas users', () => {
+test('Test #74 - Aceder a rotas protegidas users', () => {
   return request(app).get(userRoute)
     .then((res) => {
       expect(res.status).toBe(401);
     });
 });
 
-test('Test #71 - Criar um Utilizador', () => {
+test('Test #75 - Criar um Utilizador', () => {
   const userMail = generateUniqueEmailUser();
 
   return request(app)

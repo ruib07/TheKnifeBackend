@@ -7,7 +7,7 @@ const route = '/contacts';
 
 const generateUniqueEmail = () => `${uuid.v4()}@gmail.com`;
 
-test('Test #72 - Obter todos os contatos', async () => {
+test('Test #76 - Obter todos os contatos', async () => {
   const getAllResponse = await request(app).get(route);
   expect(getAllResponse.status).toBe(200);
   expect(Array.isArray(getAllResponse.body)).toBe(true);
@@ -15,14 +15,14 @@ test('Test #72 - Obter todos os contatos', async () => {
   expect(getAllResponse.body[0]).toHaveProperty('id');
 });
 
-test('Test #73 - Obter contato por ID', async () => {
+test('Test #77 - Obter contato por ID', async () => {
   const contactId = 1;
   const response = await request(app).get(`${route}/${contactId}`);
   expect(response.status).toBe(200);
   expect(response.body).toHaveProperty('id', contactId);
 });
 
-test('Test #74 - Inserir dados de contacto', async () => {
+test('Test #78 - Inserir dados de contacto', async () => {
   const mail = generateUniqueEmail();
 
   const contactData = {
@@ -65,9 +65,9 @@ describe('Validação de criar um contacto', () => {
       });
   };
 
-  test('Test #75 - Inserir um contacto sem nome', () => testTemplate({ name: null }, 'Preencha todos os campos obrigatórios!'));
-  test('Test #76 - Inserir um contacto sem email', () => testTemplate({ email: null }, 'Preencha todos os campos obrigatórios!'));
-  test('Test #77 - Inserir um contacto sem telefone', () => testTemplate({ phoneNumber: null }, 'Preencha todos os campos obrigatórios!'));
-  test('Test #78 - Inserir um contacto sem assunto', () => testTemplate({ subject: null }, 'Preencha todos os campos obrigatórios!'));
-  test('Test #79 - Inserir um contacto sem mensagem', () => testTemplate({ message: null }, 'Preencha todos os campos obrigatórios!'));
+  test('Test #79 - Inserir um contacto sem nome', () => testTemplate({ name: null }, 'Preencha todos os campos obrigatórios!'));
+  test('Test #80 - Inserir um contacto sem email', () => testTemplate({ email: null }, 'Preencha todos os campos obrigatórios!'));
+  test('Test #81 - Inserir um contacto sem telefone', () => testTemplate({ phoneNumber: null }, 'Preencha todos os campos obrigatórios!'));
+  test('Test #82 - Inserir um contacto sem assunto', () => testTemplate({ subject: null }, 'Preencha todos os campos obrigatórios!'));
+  test('Test #83 - Inserir um contacto sem mensagem', () => testTemplate({ message: null }, 'Preencha todos os campos obrigatórios!'));
 });

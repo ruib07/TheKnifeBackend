@@ -71,15 +71,15 @@ module.exports = (app) => {
 
   const confirmEmail = async (email) => {
     const user = await find({ email });
-  
+
     if (!user) {
       return { error: 'Email não encontrado!' };
     }
-  
+
     if (user.confirmed) {
       return { error: 'Email já confirmado!' };
     }
-  
+
     return { success: true };
   };
 
@@ -88,29 +88,28 @@ module.exports = (app) => {
       if (!validatePassword(newPassword)) {
         throw new ValidationError('A password não cumpre os requisitos');
       }
-    
+
       const user = await app.services.registeruser.find({ email });
       if (!user) {
         return { error: 'Utilizador não encontrado!' };
       }
-    
+
       if (newPassword !== confirmNewPassword) {
         return { error: 'A Palavra Passe deve ser igual nos dois campos!' };
       }
-    
+
       const updatePasswords = await Promise.all([
         app.db('registerusers').where({ email }).update({ password: getPasswordHash(newPassword) }, '*'),
         app.db('users').where({ email }).update({ password: getPasswordHash(newPassword) }, '*'),
       ]);
-    
+
       return { success: true };
     } catch (error) {
       if (error instanceof ValidationError) {
         return { error: error.message };
       }
-    
-      console.error(error);
-      return { error: 'Erro desconhecido' };
+
+      return { error: 'Erro!' };
     }
   };
 

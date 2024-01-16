@@ -27,7 +27,7 @@ beforeAll(async () => {
     desc: 'Restaurante de comida italiana situado em Braga',
     rphone: 253456789,
     location: 'Rua Gonçalo Sousa 285',
-    image: '/Frontend/theknife-website/src/assets/logos/TheKnife-LogoDark.png',
+    image: 'https://t4.ftcdn.net/jpg/02/94/26/33/360_F_294263329_1IgvqNgDbhmQNgDxkhlW433uOFuIDar4.jpg',
     numberoftables: 10,
     capacity: 200,
     openingdays: 'Aberto de segunda a sábado',
@@ -50,7 +50,7 @@ beforeAll(async () => {
   responsibleRegistration.token = jwt.encode(responsibleRegistration, responsiblesecret);
 });
 
-test('Test #23 - Listar todos os perfis de responsáveis de restaurantes', () => {
+test('Test #25 - Listar todos os perfis de responsáveis de restaurantes', () => {
   return request(app).get(route)
     .set('Authorization', `bearer ${responsibleRegistration.token}`)
     .then((res) => {
@@ -58,7 +58,7 @@ test('Test #23 - Listar todos os perfis de responsáveis de restaurantes', () =>
     });
 });
 
-test('Test #24 - Listar um perfil de um responsável de um restaurante por ID', () => {
+test('Test #26 - Listar um perfil de um responsável de um restaurante por ID', () => {
   const mail = generateUniqueEmail();
 
   return app.db('restaurantresponsibles')
@@ -78,7 +78,7 @@ test('Test #24 - Listar um perfil de um responsável de um restaurante por ID', 
     });
 });
 
-test('Test #25 - Inserir um perfil de um responsável de um restaurante', () => {
+test('Test #27 - Inserir um perfil de um responsável de um restaurante', () => {
   const mail = generateUniqueEmail();
 
   return request(app).post(route)
@@ -118,13 +118,13 @@ describe('Validação de criar um responsável de um restaurante', () => {
       });
   };
 
-  test('Test #26 - Inserir um perfil de um responsável sem nome', () => testTemplate({ flname: null }, 'Nome do responsável do restaurante obrigatório!'));
-  test('Test #27 - Inserir um perfil de um responsável sem telemóvel', () => testTemplate({ phone: null }, 'Telemóvel do responsável do restaurante obrigatório!'));
-  test('Test #28 - Inserir um perfil de um responsável sem email', () => testTemplate({ email: null }, 'Email do responsável do restaurante obrigatório!'));
-  test('Test #29 - Inserir um perfil de um responsável sem password', () => testTemplate({ password: null }, 'Password do responsável do restaurante obrigatório!'));
+  test('Test #28 - Inserir um perfil de um responsável sem nome', () => testTemplate({ flname: null }, 'Nome do responsável do restaurante obrigatório!'));
+  test('Test #29 - Inserir um perfil de um responsável sem telemóvel', () => testTemplate({ phone: null }, 'Telemóvel do responsável do restaurante obrigatório!'));
+  test('Test #30 - Inserir um perfil de um responsável sem email', () => testTemplate({ email: null }, 'Email do responsável do restaurante obrigatório!'));
+  test('Test #31 - Inserir um perfil de um responsável sem password', () => testTemplate({ password: null }, 'Password do responsável do restaurante obrigatório!'));
 });
 
-test('Test #30 - Atualizar os dados de um perfil de um responsável de um restaurante', () => {
+test('Test #32 - Atualizar os dados de um perfil de um responsável de um restaurante', () => {
   const mail = generateUniqueEmail();
 
   return app.db('restaurantresponsibles')

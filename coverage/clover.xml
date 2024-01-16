@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1704990942240" clover="3.2.0">
-  <project timestamp="1704990942240" name="All files">
-    <metrics statements="474" coveredstatements="434" conditionals="143" coveredconditionals="123" methods="178" coveredmethods="147" elements="795" coveredelements="704" complexity="0" loc="474" ncloc="474" packages="6" files="25" classes="25"/>
+<coverage generated="1705055778244" clover="3.2.0">
+  <project timestamp="1705055778244" name="All files">
+    <metrics statements="499" coveredstatements="453" conditionals="165" coveredconditionals="139" methods="180" coveredmethods="149" elements="844" coveredelements="741" complexity="0" loc="499" ncloc="499" packages="6" files="25" classes="25"/>
     <package name="theknife-backend">
       <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <file name="knexfile.js" path="/Users/ruib/TheKnife/theknife-backend/knexfile.js">
@@ -121,7 +121,7 @@
       </file>
     </package>
     <package name="theknife-backend.src.routes">
-      <metrics statements="182" coveredstatements="153" conditionals="8" coveredconditionals="8" methods="116" coveredmethods="87"/>
+      <metrics statements="181" coveredstatements="152" conditionals="8" coveredconditionals="8" methods="116" coveredmethods="87"/>
       <file name="auths.js" path="/Users/ruib/TheKnife/theknife-backend/src/routes/auths.js">
         <metrics statements="22" coveredstatements="20" conditionals="4" coveredconditionals="4" methods="7" coveredmethods="5"/>
         <line num="1" count="10" type="stmt"/>
@@ -191,31 +191,30 @@
         <line num="24" count="10" type="stmt"/>
       </file>
       <file name="registerusers.js" path="/Users/ruib/TheKnife/theknife-backend/src/routes/registerusers.js">
-        <metrics statements="24" coveredstatements="21" conditionals="2" coveredconditionals="2" methods="14" coveredmethods="11"/>
+        <metrics statements="23" coveredstatements="20" conditionals="2" coveredconditionals="2" methods="14" coveredmethods="11"/>
         <line num="1" count="10" type="stmt"/>
-        <line num="3" count="10" type="stmt"/>
-        <line num="4" count="10" type="stmt"/>
-        <line num="5" count="1" type="stmt"/>
-        <line num="6" count="1" type="stmt"/>
-        <line num="7" count="0" type="stmt"/>
-        <line num="10" count="10" type="stmt"/>
-        <line num="11" count="1" type="stmt"/>
-        <line num="14" count="1" type="stmt"/>
-        <line num="15" count="0" type="stmt"/>
-        <line num="18" count="10" type="stmt"/>
-        <line num="19" count="7" type="stmt"/>
-        <line num="21" count="4" type="stmt"/>
-        <line num="23" count="3" type="stmt"/>
-        <line num="27" count="10" type="stmt"/>
+        <line num="2" count="10" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="0" type="stmt"/>
+        <line num="8" count="10" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="16" count="10" type="stmt"/>
+        <line num="17" count="7" type="stmt"/>
+        <line num="19" count="4" type="stmt"/>
+        <line num="21" count="3" type="stmt"/>
+        <line num="25" count="10" type="stmt"/>
+        <line num="26" count="2" type="stmt"/>
         <line num="28" count="2" type="stmt"/>
-        <line num="30" count="2" type="stmt"/>
-        <line num="36" count="2" type="cond" truecount="2" falsecount="0"/>
-        <line num="37" count="1" type="stmt"/>
-        <line num="40" count="10" type="stmt"/>
-        <line num="41" count="1" type="stmt"/>
-        <line num="42" count="1" type="stmt"/>
-        <line num="44" count="0" type="stmt"/>
-        <line num="48" count="10" type="stmt"/>
+        <line num="34" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="35" count="1" type="stmt"/>
+        <line num="38" count="10" type="stmt"/>
+        <line num="39" count="1" type="stmt"/>
+        <line num="40" count="1" type="stmt"/>
+        <line num="42" count="0" type="stmt"/>
+        <line num="46" count="10" type="stmt"/>
       </file>
       <file name="reservations.js" path="/Users/ruib/TheKnife/theknife-backend/src/routes/reservations.js">
         <metrics statements="22" coveredstatements="17" conditionals="0" coveredconditionals="0" methods="16" coveredmethods="11"/>
@@ -333,7 +332,7 @@
       </file>
     </package>
     <package name="theknife-backend.src.services">
-      <metrics statements="210" coveredstatements="204" conditionals="125" coveredconditionals="110" methods="47" coveredmethods="47"/>
+      <metrics statements="236" coveredstatements="224" conditionals="147" coveredconditionals="126" methods="49" coveredmethods="49"/>
       <file name="comment.js" path="/Users/ruib/TheKnife/theknife-backend/src/services/comment.js">
         <metrics statements="17" coveredstatements="17" conditionals="9" coveredconditionals="8" methods="6" coveredmethods="6"/>
         <line num="1" count="10" type="stmt"/>
@@ -374,7 +373,7 @@
         <line num="29" count="10" type="stmt"/>
       </file>
       <file name="registeruser.js" path="/Users/ruib/TheKnife/theknife-backend/src/services/registeruser.js">
-        <metrics statements="32" coveredstatements="31" conditionals="14" coveredconditionals="11" methods="7" coveredmethods="7"/>
+        <metrics statements="45" coveredstatements="41" conditionals="25" coveredconditionals="19" methods="8" coveredmethods="8"/>
         <line num="2" count="10" type="stmt"/>
         <line num="3" count="10" type="stmt"/>
         <line num="5" count="10" type="stmt"/>
@@ -386,27 +385,40 @@
         <line num="19" count="9" type="stmt"/>
         <line num="20" count="9" type="stmt"/>
         <line num="23" count="10" type="stmt"/>
-        <line num="24" count="11" type="cond" truecount="2" falsecount="0"/>
-        <line num="25" count="10" type="cond" truecount="2" falsecount="0"/>
-        <line num="26" count="9" type="cond" truecount="2" falsecount="0"/>
-        <line num="28" count="8" type="stmt"/>
-        <line num="29" count="8" type="cond" truecount="1" falsecount="1"/>
-        <line num="31" count="8" type="stmt"/>
-        <line num="32" count="8" type="stmt"/>
-        <line num="34" count="8" type="stmt"/>
-        <line num="41" count="10" type="stmt"/>
-        <line num="42" count="1" type="stmt"/>
-        <line num="43" count="1" type="stmt"/>
-        <line num="45" count="1" type="stmt"/>
-        <line num="54" count="10" type="stmt"/>
-        <line num="55" count="2" type="stmt"/>
-        <line num="56" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="24" count="11" type="stmt"/>
+        <line num="25" count="11" type="stmt"/>
+        <line num="26" count="11" type="stmt"/>
+        <line num="27" count="11" type="stmt"/>
+        <line num="28" count="11" type="stmt"/>
+        <line num="30" count="11" type="cond" truecount="5" falsecount="0"/>
+        <line num="33" count="10" type="stmt"/>
+        <line num="34" count="11" type="cond" truecount="2" falsecount="0"/>
+        <line num="35" count="10" type="cond" truecount="2" falsecount="0"/>
+        <line num="36" count="9" type="cond" truecount="2" falsecount="0"/>
+        <line num="38" count="8" type="cond" truecount="1" falsecount="1"/>
+        <line num="39" count="0" type="stmt"/>
+        <line num="42" count="8" type="stmt"/>
+        <line num="43" count="8" type="cond" truecount="1" falsecount="1"/>
+        <line num="45" count="8" type="stmt"/>
+        <line num="46" count="8" type="stmt"/>
+        <line num="48" count="8" type="stmt"/>
+        <line num="55" count="10" type="stmt"/>
+        <line num="56" count="1" type="cond" truecount="1" falsecount="1"/>
         <line num="57" count="0" type="stmt"/>
-        <line num="60" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="60" count="1" type="stmt"/>
         <line num="61" count="1" type="stmt"/>
-        <line num="64" count="1" type="stmt"/>
-        <line num="69" count="1" type="stmt"/>
+        <line num="63" count="1" type="stmt"/>
         <line num="72" count="10" type="stmt"/>
+        <line num="73" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="74" count="0" type="stmt"/>
+        <line num="77" count="2" type="stmt"/>
+        <line num="78" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="79" count="0" type="stmt"/>
+        <line num="82" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="83" count="1" type="stmt"/>
+        <line num="86" count="1" type="stmt"/>
+        <line num="91" count="1" type="stmt"/>
+        <line num="94" count="10" type="stmt"/>
       </file>
       <file name="reservation.js" path="/Users/ruib/TheKnife/theknife-backend/src/services/reservation.js">
         <metrics statements="18" coveredstatements="18" conditionals="11" coveredconditionals="10" methods="6" coveredmethods="6"/>
@@ -461,7 +473,7 @@
         <line num="46" count="10" type="stmt"/>
       </file>
       <file name="restaurantregistration.js" path="/Users/ruib/TheKnife/theknife-backend/src/services/restaurantregistration.js">
-        <metrics statements="45" coveredstatements="44" conditionals="40" coveredconditionals="37" methods="7" coveredmethods="7"/>
+        <metrics statements="58" coveredstatements="54" conditionals="51" coveredconditionals="45" methods="8" coveredmethods="8"/>
         <line num="2" count="10" type="stmt"/>
         <line num="3" count="10" type="stmt"/>
         <line num="5" count="10" type="stmt"/>
@@ -473,40 +485,53 @@
         <line num="32" count="10" type="stmt"/>
         <line num="33" count="10" type="stmt"/>
         <line num="36" count="10" type="stmt"/>
-        <line num="37" count="25" type="cond" truecount="2" falsecount="0"/>
-        <line num="38" count="24" type="cond" truecount="2" falsecount="0"/>
-        <line num="39" count="23" type="cond" truecount="2" falsecount="0"/>
-        <line num="40" count="22" type="cond" truecount="2" falsecount="0"/>
-        <line num="41" count="21" type="cond" truecount="2" falsecount="0"/>
-        <line num="42" count="20" type="cond" truecount="2" falsecount="0"/>
-        <line num="43" count="19" type="cond" truecount="2" falsecount="0"/>
-        <line num="44" count="18" type="cond" truecount="2" falsecount="0"/>
-        <line num="45" count="17" type="cond" truecount="2" falsecount="0"/>
-        <line num="46" count="16" type="cond" truecount="2" falsecount="0"/>
-        <line num="47" count="15" type="cond" truecount="2" falsecount="0"/>
-        <line num="48" count="14" type="cond" truecount="2" falsecount="0"/>
-        <line num="49" count="13" type="cond" truecount="2" falsecount="0"/>
-        <line num="50" count="12" type="cond" truecount="2" falsecount="0"/>
-        <line num="51" count="11" type="cond" truecount="2" falsecount="0"/>
-        <line num="52" count="10" type="cond" truecount="2" falsecount="0"/>
-        <line num="54" count="9" type="stmt"/>
-        <line num="55" count="9" type="cond" truecount="1" falsecount="1"/>
-        <line num="57" count="9" type="stmt"/>
-        <line num="58" count="9" type="stmt"/>
-        <line num="60" count="9" type="stmt"/>
-        <line num="80" count="10" type="stmt"/>
-        <line num="81" count="2" type="stmt"/>
-        <line num="83" count="2" type="cond" truecount="1" falsecount="1"/>
-        <line num="84" count="0" type="stmt"/>
-        <line num="87" count="2" type="cond" truecount="2" falsecount="0"/>
-        <line num="88" count="1" type="stmt"/>
-        <line num="91" count="1" type="stmt"/>
-        <line num="96" count="1" type="stmt"/>
-        <line num="99" count="10" type="stmt"/>
-        <line num="100" count="1" type="stmt"/>
-        <line num="101" count="1" type="stmt"/>
-        <line num="103" count="1" type="stmt"/>
-        <line num="125" count="10" type="stmt"/>
+        <line num="37" count="12" type="stmt"/>
+        <line num="38" count="12" type="stmt"/>
+        <line num="39" count="12" type="stmt"/>
+        <line num="40" count="12" type="stmt"/>
+        <line num="41" count="12" type="stmt"/>
+        <line num="43" count="12" type="cond" truecount="5" falsecount="0"/>
+        <line num="46" count="10" type="stmt"/>
+        <line num="47" count="25" type="cond" truecount="2" falsecount="0"/>
+        <line num="48" count="24" type="cond" truecount="2" falsecount="0"/>
+        <line num="49" count="23" type="cond" truecount="2" falsecount="0"/>
+        <line num="50" count="22" type="cond" truecount="2" falsecount="0"/>
+        <line num="51" count="21" type="cond" truecount="2" falsecount="0"/>
+        <line num="52" count="20" type="cond" truecount="2" falsecount="0"/>
+        <line num="53" count="19" type="cond" truecount="2" falsecount="0"/>
+        <line num="54" count="18" type="cond" truecount="2" falsecount="0"/>
+        <line num="55" count="17" type="cond" truecount="2" falsecount="0"/>
+        <line num="56" count="16" type="cond" truecount="2" falsecount="0"/>
+        <line num="57" count="15" type="cond" truecount="2" falsecount="0"/>
+        <line num="58" count="14" type="cond" truecount="2" falsecount="0"/>
+        <line num="59" count="13" type="cond" truecount="2" falsecount="0"/>
+        <line num="60" count="12" type="cond" truecount="2" falsecount="0"/>
+        <line num="61" count="11" type="cond" truecount="2" falsecount="0"/>
+        <line num="62" count="10" type="cond" truecount="2" falsecount="0"/>
+        <line num="64" count="9" type="cond" truecount="1" falsecount="1"/>
+        <line num="65" count="0" type="stmt"/>
+        <line num="68" count="9" type="stmt"/>
+        <line num="69" count="9" type="cond" truecount="1" falsecount="1"/>
+        <line num="71" count="9" type="stmt"/>
+        <line num="72" count="9" type="stmt"/>
+        <line num="74" count="9" type="stmt"/>
+        <line num="94" count="10" type="stmt"/>
+        <line num="95" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="96" count="0" type="stmt"/>
+        <line num="99" count="2" type="stmt"/>
+        <line num="101" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="102" count="0" type="stmt"/>
+        <line num="105" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="106" count="1" type="stmt"/>
+        <line num="109" count="1" type="stmt"/>
+        <line num="114" count="1" type="stmt"/>
+        <line num="117" count="10" type="stmt"/>
+        <line num="118" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="119" count="0" type="stmt"/>
+        <line num="121" count="1" type="stmt"/>
+        <line num="122" count="1" type="stmt"/>
+        <line num="124" count="1" type="stmt"/>
+        <line num="146" count="10" type="stmt"/>
       </file>
       <file name="restaurantresponsible.js" path="/Users/ruib/TheKnife/theknife-backend/src/services/restaurantresponsible.js">
         <metrics statements="25" coveredstatements="25" conditionals="12" coveredconditionals="10" methods="6" coveredmethods="6"/>

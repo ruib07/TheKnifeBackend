@@ -47,7 +47,7 @@ beforeAll(async () => {
     desc: 'Restaurante de comida italiana situado em Braga',
     rphone: 253456789,
     location: 'Rua Gonçalo Sousa 285',
-    image: '/Frontend/theknife-website/src/assets/logos/TheKnife-LogoDark.png',
+    image: 'https://t4.ftcdn.net/jpg/02/94/26/33/360_F_294263329_1IgvqNgDbhmQNgDxkhlW433uOFuIDar4.jpg',
     numberoftables: 10,
     capacity: 200,
     openingdays: 'Aberto de segunda a sábado',
@@ -74,7 +74,7 @@ beforeAll(async () => {
     desc: 'Restaurante de comida italiana situado em Braga',
     rphone: 253456789,
     location: 'Rua Gonçalo Sousa 285',
-    image: '/Frontend/theknife-website/src/assets/logos/TheKnife-LogoDark.png',
+    image: 'https://t4.ftcdn.net/jpg/02/94/26/33/360_F_294263329_1IgvqNgDbhmQNgDxkhlW433uOFuIDar4.jpg',
     numberoftables: 10,
     capacity: 200,
     openingdays: 'Aberto de segunda a sábado',
@@ -88,14 +88,14 @@ beforeAll(async () => {
   restaurant = { ...restaurantTable };
 });
 
-test('Test #80 - Listar todos os comentários', () => {
+test('Test #84 - Listar todos os comentários', () => {
   return request(app).get(route)
     .then((res) => {
       expect(res.status).toBe(200);
     });
 });
 
-test('Test #81 - Listar um comentário por ID', () => {
+test('Test #85 - Listar um comentário por ID', () => {
   return app.db('comments').insert({
     username: 'goncalosousa',
     commentdate: '10-01-2024',
@@ -111,7 +111,7 @@ test('Test #81 - Listar um comentário por ID', () => {
     });
 });
 
-test('Test #82 - Inserir um comentário', () => {
+test('Test #86 - Inserir um comentário', () => {
   return request(app).post(route)
     .send({
       username: 'goncalosousa',
@@ -144,13 +144,13 @@ describe('Validação de criar um comentário', () => {
       });
   };
 
-  test('Test #83 - Inserir um comentário sem username', () => testTemplate({ username: null }, 'Username é um atributo obrigatório!'));
-  test('Test #84 - Inserir um comentário sem data de comentário', () => testTemplate({ commentdate: null }, 'Data do comentário é um atributo obrigatório!'));
-  test('Test #85 - Inserir um comentário sem review', () => testTemplate({ review: null }, 'Review é um atributo obrigatório!'));
-  test('Test #86 - Inserir um comentário sem comentário', () => testTemplate({ comment: null }, 'Comentário é um atributo obrigatório!'));
+  test('Test #87 - Inserir um comentário sem username', () => testTemplate({ username: null }, 'Username é um atributo obrigatório!'));
+  test('Test #88 - Inserir um comentário sem data de comentário', () => testTemplate({ commentdate: null }, 'Data do comentário é um atributo obrigatório!'));
+  test('Test #89 - Inserir um comentário sem review', () => testTemplate({ review: null }, 'Review é um atributo obrigatório!'));
+  test('Test #90 - Inserir um comentário sem comentário', () => testTemplate({ comment: null }, 'Comentário é um atributo obrigatório!'));
 });
 
-test('Test #87 - Atualizar dados de um comentário', () => {
+test('Test #91 - Atualizar dados de um comentário', () => {
   return app.db('comments')
     .insert({
       username: 'goncalosousa',
@@ -175,7 +175,7 @@ test('Test #87 - Atualizar dados de um comentário', () => {
     });
 });
 
-test('Test #88 - Remover um comentário', () => {
+test('Test #92 - Remover um comentário', () => {
   return app.db('comments')
     .insert({
       username: 'goncalosousa',
