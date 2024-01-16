@@ -91,27 +91,49 @@ module.exports = (app) => {
     ]);
   };
 
-  const updatePassword = async (id, newPassword, confirmNewPassword) => {
-    if (!validatePassword(newPassword)) {
-      throw new ValidationError('A password não cumpre os requisitos');
+  const confirmEmail = async (email) => {
+    const user = await find({ email });
+
+    if (!user) {
+      return { error: 'Email não encontrado!' };
     }
 
-    const restaurantResgistration = await app.services.restaurantregistration.find({ id });
-
-    if (!restaurantResgistration) {
-      return { error: 'Responsável não encontrado!' };
+    if (user.confirmed) {
+      return { error: 'Email já confirmado!' };
     }
-
-    if (newPassword !== confirmNewPassword) {
-      return { error: 'A Palavra Passe deve ser igual nos dois campos!' };
-    }
-
-    const updatePasswords = await Promise.all([
-      app.db('restaurantregistrations').where({ id }).update({ password: newPassword }, '*'),
-      app.db('restaurantresponsibles').where({ id }).update({ password: newPassword }, '*'),
-    ]);
 
     return { success: true };
+  };
+
+  const updatePassword = async (email, newPassword, confirmNewPassword) => {
+    try {
+      if (!validatePassword(newPassword)) {
+        throw new ValidationError('A password não cumpre os requisitos');
+      }
+
+      const restaurantResgistration = await app.services.restaurantregistration.find({ email });
+
+      if (!restaurantResgistration) {
+        return { error: 'Responsável não encontrado!' };
+      }
+
+      if (newPassword !== confirmNewPassword) {
+        return { error: 'A Palavra Passe deve ser igual nos dois campos!' };
+      }
+
+      const updatePasswords = await Promise.all([
+        app.db('restaurantregistrations').where({ email }).update({ password: getPasswordHash(newPassword) }, '*'),
+        app.db('restaurantresponsibles').where({ email }).update({ password: getPasswordHash(newPassword) }, '*'),
+      ]);
+
+      return { success: true };
+    } catch (error) {
+      if (error instanceof ValidationError) {
+        return { error: error.message };
+      }
+
+      return { error: 'Erro!' };
+    }
   };
 
   const update = (id, restaurantRes) => {
@@ -147,6 +169,7 @@ module.exports = (app) => {
     getAll,
     find,
     save,
+    confirmEmail,
     updatePassword,
     update,
   };

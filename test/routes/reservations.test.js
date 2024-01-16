@@ -45,7 +45,7 @@ beforeAll(async () => {
     desc: 'pizza pesto pasta',
     rphone: 253253253,
     location: 'braga',
-    image: 'image',
+    image: 'https://t4.ftcdn.net/jpg/02/94/26/33/360_F_294263329_1IgvqNgDbhmQNgDxkhlW433uOFuIDar4.jpg',
     numberoftables: 20,
     capacity: 100,
     openingdays: 'segunda-sexta',
@@ -72,7 +72,7 @@ beforeAll(async () => {
     desc: 'pizza pesto pasta',
     rphone: 253253253,
     location: 'braga',
-    image: 'image',
+    image: 'https://t4.ftcdn.net/jpg/02/94/26/33/360_F_294263329_1IgvqNgDbhmQNgDxkhlW433uOFuIDar4.jpg',
     numberoftables: 20,
     capacity: 100,
     openingdays: 'segunda-sexta',
@@ -85,14 +85,14 @@ beforeAll(async () => {
   restaurant = { ...createRestaurant };
 });
 
-test('Test #89 - Listar Reservas', () => {
+test('Test #93 - Listar Reservas', () => {
   return request(app).get(route)
     .then((res) => {
       expect(res.status).toBe(200);
     });
 });
 
-test('Test #90 - Listar Reservas por ID', () => {
+test('Test #94 - Listar Reservas por ID', () => {
   return app.db('reservations')
     .insert({
       client_name: 'Joao Rodrigues JR10',
@@ -110,7 +110,7 @@ test('Test #90 - Listar Reservas por ID', () => {
     });
 });
 
-test('Test #91 - Inserir Reservas', () => {
+test('Test #95 - Inserir Reservas', () => {
   return request(app)
     .post(route)
     .send({
@@ -146,14 +146,14 @@ describe('Validação de criar uma reserva', () => {
       });
   };
 
-  test('Test #92 - Inserir Reservas sem Nome do cliente', () => testTemplate({ client_name: null }, 'Primeiro e último nome é um atributo obrigatório!'));
-  test('Test #93 - Inserir Reservas sem Número de Telefone', () => testTemplate({ phonenumber: null }, 'Número de telefone é um atributo obrigatório!'));
-  test('Test #94 - Inserir Reservas sem Data de Reserva', () => testTemplate({ reservationdate: null }, 'Data é um atributo obrigatório!'));
-  test('Test #95 - Inserir Reservas sem Hora de Reserva', () => testTemplate({ reservationtime: null }, 'Hora é um atributo obrigatório!'));
-  test('Test #96 - Inserir Reservas sem Número de Pessoas', () => testTemplate({ numberpeople: null }, 'Número de pessoas é um atributo obrigatório!'));
+  test('Test #96 - Inserir Reservas sem Nome do cliente', () => testTemplate({ client_name: null }, 'Primeiro e último nome é um atributo obrigatório!'));
+  test('Test #97 - Inserir Reservas sem Número de Telefone', () => testTemplate({ phonenumber: null }, 'Número de telefone é um atributo obrigatório!'));
+  test('Test #98 - Inserir Reservas sem Data de Reserva', () => testTemplate({ reservationdate: null }, 'Data é um atributo obrigatório!'));
+  test('Test #99 - Inserir Reservas sem Hora de Reserva', () => testTemplate({ reservationtime: null }, 'Hora é um atributo obrigatório!'));
+  test('Test #100 - Inserir Reservas sem Número de Pessoas', () => testTemplate({ numberpeople: null }, 'Número de pessoas é um atributo obrigatório!'));
 });
 
-test('Test #97 - Modificar uma Reservas por ID', () => {
+test('Test #101 - Modificar uma Reservas por ID', () => {
   return app.db('reservations')
     .insert({
       client_name: 'Joao Rodrigues JR12',
@@ -173,7 +173,7 @@ test('Test #97 - Modificar uma Reservas por ID', () => {
       }));
 });
 
-test('Test #98 - Eliminar uma Reserva', () => {
+test('Test #102 - Eliminar uma Reserva', () => {
   let reservationId;
   return app.db('reservations')
     .insert({

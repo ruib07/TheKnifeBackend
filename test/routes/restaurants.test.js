@@ -28,7 +28,7 @@ beforeAll(async () => {
     desc: 'Restaurante de comida italiana situado em Braga',
     rphone: 253456789,
     location: 'Rua Gonçalo Sousa 285',
-    image: '/Frontend/theknife-website/src/assets/logos/TheKnife-LogoDark.png',
+    image: 'https://t4.ftcdn.net/jpg/02/94/26/33/360_F_294263329_1IgvqNgDbhmQNgDxkhlW433uOFuIDar4.jpg',
     numberoftables: 10,
     capacity: 200,
     openingdays: 'Aberto de segunda a sábado',
@@ -62,14 +62,14 @@ beforeAll(async () => {
   responsibleRegistration.token = jwt.encode(responsibleRegistration, secret);
 });
 
-test('Test #31 - Listar todos os restaurantes', () => {
+test('Test #33 - Listar todos os restaurantes', () => {
   return request(app).get(route)
     .then((res) => {
       expect(res.status).toBe(200);
     });
 });
 
-test('Test #32 - Listar um restaurante por ID', () => {
+test('Test #34 - Listar um restaurante por ID', () => {
   return app.db('restaurants')
     .insert({
       name: 'La Gusto Italiano',
@@ -77,7 +77,7 @@ test('Test #32 - Listar um restaurante por ID', () => {
       desc: 'Restaurante de comida italiana situado em Braga',
       rphone: 253456789,
       location: 'Rua Gonçalo Sousa 285',
-      image: '/Frontend/theknife-website/src/assets/logos/TheKnife-LogoDark.png',
+      image: 'https://t4.ftcdn.net/jpg/02/94/26/33/360_F_294263329_1IgvqNgDbhmQNgDxkhlW433uOFuIDar4.jpg',
       numberoftables: 10,
       capacity: 200,
       openingdays: 'Aberto de segunda a sábado',
@@ -95,7 +95,7 @@ test('Test #32 - Listar um restaurante por ID', () => {
     });
 });
 
-test('Test #33 - Inserir um restaurante', () => {
+test('Test #35 - Inserir um restaurante', () => {
   return request(app).post(route)
     .send({
       name: 'La Gusto Italiano',
@@ -103,7 +103,7 @@ test('Test #33 - Inserir um restaurante', () => {
       desc: 'Restaurante de comida italiana situado em Braga',
       rphone: 253456789,
       location: 'Rua Gonçalo Sousa 285',
-      image: '/Frontend/theknife-website/src/assets/logos/TheKnife-LogoDark.png',
+      image: 'https://t4.ftcdn.net/jpg/02/94/26/33/360_F_294263329_1IgvqNgDbhmQNgDxkhlW433uOFuIDar4.jpg',
       numberoftables: 10,
       capacity: 200,
       openingdays: 'Aberto de segunda a sábado',
@@ -129,7 +129,7 @@ describe('Validação de criar um restaurante', () => {
         desc: 'Restaurante de comida italiana situado em Braga',
         rphone: 253456789,
         location: 'Rua Gonçalo Sousa 285',
-        image: '/Frontend/theknife-website/src/assets/logos/TheKnife-LogoDark.png',
+        image: 'https://t4.ftcdn.net/jpg/02/94/26/33/360_F_294263329_1IgvqNgDbhmQNgDxkhlW433uOFuIDar4.jpg',
         numberoftables: 10,
         capacity: 200,
         openingdays: 'Aberto de segunda a sábado',
@@ -146,21 +146,21 @@ describe('Validação de criar um restaurante', () => {
       });
   };
 
-  test('Test #34 - Inserir um restaurante sem nome do restaurante', () => testTemplate({ name: null }, 'Nome do restaurante é um atributo obrigatório!'));
-  test('Test #35 - Inserir um restaurante sem categoria do restaurante', () => testTemplate({ category: null }, 'Categoria do restaurante é um atributo obrigatório!'));
-  test('Test #36 - Inserir um restaurante sem descrição do restaurante', () => testTemplate({ desc: null }, 'Descrição do restaurante é um atributo obrigatório!'));
-  test('Test #37 - Inserir um restaurante sem telefone do restaurante', () => testTemplate({ rphone: null }, 'Telefone do restaurante é um atributo obrigatório!'));
-  test('Test #38 - Inserir um restaurante sem localização do restaurante', () => testTemplate({ location: null }, 'Localização do restaurante é um atributo obrigatório!'));
-  test('Test #39 - Inserir um restaurante sem imagem do restaurante', () => testTemplate({ image: null }, 'Imagem do restaurante é um atributo obrigatório!'));
-  test('Test #40 - Inserir um restaurante sem número de mesas do restaurante', () => testTemplate({ numberoftables: null }, 'Número de mesas do restaurante é um atributo obrigatório!'));
-  test('Test #41 - Inserir um restaurante sem capacidade do restaurante', () => testTemplate({ capacity: null }, 'Capacidade do restaurante é um atributo obrigatório!'));
-  test('Test #42 - Inserir um restaurante sem dias de funcionamento', () => testTemplate({ openingdays: null }, 'Dias de funcionamento são um atributo obrigatório!'));
-  test('Test #43 - Inserir um restaurante sem preço médio', () => testTemplate({ averageprice: null }, 'Preço médio é um atributo obrigatório!'));
-  test('Test #44 - Inserir um restaurante sem horas de abertura', () => testTemplate({ openinghours: null }, 'Horas de abertura são um atributo obrigatório!'));
-  test('Test #45 - Inserir um restaurante sem horas de fecho', () => testTemplate({ closinghours: null }, 'Horas de fecho são um atributo obrigatório!'));
+  test('Test #36 - Inserir um restaurante sem nome do restaurante', () => testTemplate({ name: null }, 'Nome do restaurante é um atributo obrigatório!'));
+  test('Test #37 - Inserir um restaurante sem categoria do restaurante', () => testTemplate({ category: null }, 'Categoria do restaurante é um atributo obrigatório!'));
+  test('Test #38 - Inserir um restaurante sem descrição do restaurante', () => testTemplate({ desc: null }, 'Descrição do restaurante é um atributo obrigatório!'));
+  test('Test #39 - Inserir um restaurante sem telefone do restaurante', () => testTemplate({ rphone: null }, 'Telefone do restaurante é um atributo obrigatório!'));
+  test('Test #40 - Inserir um restaurante sem localização do restaurante', () => testTemplate({ location: null }, 'Localização do restaurante é um atributo obrigatório!'));
+  test('Test #41 - Inserir um restaurante sem imagem do restaurante', () => testTemplate({ image: null }, 'Imagem do restaurante é um atributo obrigatório!'));
+  test('Test #42 - Inserir um restaurante sem número de mesas do restaurante', () => testTemplate({ numberoftables: null }, 'Número de mesas do restaurante é um atributo obrigatório!'));
+  test('Test #43 - Inserir um restaurante sem capacidade do restaurante', () => testTemplate({ capacity: null }, 'Capacidade do restaurante é um atributo obrigatório!'));
+  test('Test #44 - Inserir um restaurante sem dias de funcionamento', () => testTemplate({ openingdays: null }, 'Dias de funcionamento são um atributo obrigatório!'));
+  test('Test #45 - Inserir um restaurante sem preço médio', () => testTemplate({ averageprice: null }, 'Preço médio é um atributo obrigatório!'));
+  test('Test #46 - Inserir um restaurante sem horas de abertura', () => testTemplate({ openinghours: null }, 'Horas de abertura são um atributo obrigatório!'));
+  test('Test #47 - Inserir um restaurante sem horas de fecho', () => testTemplate({ closinghours: null }, 'Horas de fecho são um atributo obrigatório!'));
 });
 
-test('Test #46 - Atualizar dados de um restaurante', () => {
+test('Test #48 - Atualizar dados de um restaurante', () => {
   return app.db('restaurants')
     .insert({
       name: 'La Gusto Italiano',
@@ -168,7 +168,7 @@ test('Test #46 - Atualizar dados de um restaurante', () => {
       desc: 'Restaurante de comida italiana situado em Braga',
       rphone: 253456789,
       location: 'Rua Gonçalo Sousa 285',
-      image: '/Frontend/theknife-website/src/assets/logos/TheKnife-LogoDark.png',
+      image: 'https://t4.ftcdn.net/jpg/02/94/26/33/360_F_294263329_1IgvqNgDbhmQNgDxkhlW433uOFuIDar4.jpg',
       numberoftables: 10,
       capacity: 200,
       openingdays: 'Aberto de segunda a sábado',
@@ -186,7 +186,7 @@ test('Test #46 - Atualizar dados de um restaurante', () => {
         desc: 'Restaurante de picanha situado em Braga',
         rphone: 253456789,
         location: 'Rua Gonçalo Sousa 285',
-        image: '/Frontend/theknife-website/src/assets/logos/TheKnife-LogoDark.png',
+        image: 'https://t4.ftcdn.net/jpg/02/94/26/33/360_F_294263329_1IgvqNgDbhmQNgDxkhlW433uOFuIDar4.jpg',
         numberoftables: 10,
         capacity: 200,
         openingdays: 'Aberto de segunda a sábado',

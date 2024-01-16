@@ -7,14 +7,14 @@ const route = '/registerusers';
 
 const generateUniqueEmail = () => `${uuid.v4()}@gmail.com`;
 
-test('Test #47 - Listar Utilizadores', () => {
+test('Test #49 - Listar Utilizadores', () => {
   return request(app).get(route)
     .then((res) => {
       expect(res.status).toBe(200);
     });
 });
 
-test('Test #48 - Listar um utilizador por ID', () => {
+test('Test #50 - Listar um utilizador por ID', () => {
   const mail = generateUniqueEmail();
 
   return app.db('registerusers')
@@ -30,7 +30,7 @@ test('Test #48 - Listar um utilizador por ID', () => {
     });
 });
 
-test('Test #49 - Atualizar dados de um utilizador', () => {
+test('Test #51 - Atualizar dados de um utilizador', () => {
   const mail = generateUniqueEmail();
 
   return app.db('registerusers')
@@ -51,7 +51,7 @@ test('Test #49 - Atualizar dados de um utilizador', () => {
     });
 });
 
-test('Test #50 - Inserir um registo de um utilizador', () => {
+test('Test #52 - Inserir um registo de um utilizador', () => {
   const mail = generateUniqueEmail();
 
   return request(app).post(route)
@@ -66,7 +66,7 @@ test('Test #50 - Inserir um registo de um utilizador', () => {
     });
 });
 
-test('Test #50.1 - Guardar password encriptada', async () => {
+test('Test #52.1 - Guardar password encriptada', async () => {
   const mail = generateUniqueEmail();
 
   const res = await request(app).post(route)
@@ -101,12 +101,12 @@ describe('Validação de criar um registo de um utilizador', () => {
       });
   };
 
-  test('Test #51 - Inserir um utilizador sem username', () => testTemplate({ username: null }, 'Username é um atributo obrigatório!'));
-  test('Test #52 - Inserir um utilizador sem email', () => testTemplate({ email: null }, 'Email é um atributo obrigatório!'));
-  test('Test #53 - Inserir um utilizador sem password', () => testTemplate({ password: null }, 'Password é um atributo obrigatório!'));
+  test('Test #53 - Inserir um utilizador sem username', () => testTemplate({ username: null }, 'Username é um atributo obrigatório!'));
+  test('Test #54 - Inserir um utilizador sem email', () => testTemplate({ email: null }, 'Email é um atributo obrigatório!'));
+  test('Test #55 - Inserir um utilizador sem password', () => testTemplate({ password: null }, 'Password é um atributo obrigatório!'));
 });
 
-test('Test #54 - Inserir e confirmar a Palavra Passe', async () => {
+test('Test #56 - Inserir e confirmar a Palavra Passe', async () => {
   const mail = generateUniqueEmail();
 
   const registrationResponse = await request(app).post(route)
@@ -128,7 +128,7 @@ test('Test #54 - Inserir e confirmar a Palavra Passe', async () => {
   expect(updatePasswordResponse.body.message).toBe('Palavra Passe atualizada com sucesso!');
 });
 
-test('Test #55 - Inserir e confirmar a Palavra Passe com palavras-passe diferentes', async () => {
+test('Test #57 - Inserir e confirmar a Palavra Passe com palavras-passe diferentes', async () => {
   const mail = generateUniqueEmail();
 
   const registrationResponse = await request(app).post(route)
@@ -149,8 +149,8 @@ test('Test #55 - Inserir e confirmar a Palavra Passe com palavras-passe diferent
   expect(updatePasswordResponse.status).toBe(400);
 });
 
-test('Test #56 - Verificação de email que exite', async () => {
-  const existingEmail = 'goncalosousa@gmail.com';
+test('Test #58 - Verificação de email que exite', async () => {
+  const existingEmail = '3f854604-abbb-42de-a606-dacff39cb8f8@gmail.com';
 
   const confirmationEmailResponse = await request(app).get(`/registerusers/confirm-email/${existingEmail}`);
 
@@ -158,7 +158,7 @@ test('Test #56 - Verificação de email que exite', async () => {
   expect(confirmationEmailResponse.body.message).toBe('Email confirmado com sucesso!');
 });
 
-test('Test #57 - Verificação de email que não existe', async () => {
+test('Test #59 - Verificação de email que não existe', async () => {
   const nonexistentEmail = 'email_que_nao_existe@gmail.com';
 
   const confirmationEmailResponse = await request(app).get(`/registerusers/confirm-email/${nonexistentEmail}`);

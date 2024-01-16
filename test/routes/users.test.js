@@ -36,7 +36,7 @@ beforeAll(async () => {
   userToken.usertoken = jwt.encode(userToken, userSecret);
 });
 
-test('Test #56 - Listar todos os utilizadores', () => {
+test('Test #60 - Listar todos os utilizadores', () => {
   return request(app).get(route)
     .set('Authorization', `bearer ${userToken.usertoken}`)
     .then((res) => {
@@ -44,7 +44,7 @@ test('Test #56 - Listar todos os utilizadores', () => {
     });
 });
 
-test('Test #57 - Listar um user por ID', () => {
+test('Test #61 - Listar um user por ID', () => {
   const userMail = generateUniqueEmail();
 
   return app.db('users')
@@ -63,7 +63,7 @@ test('Test #57 - Listar um user por ID', () => {
     });
 });
 
-test('Test #58 - Inserir um utilizador', () => {
+test('Test #62 - Inserir um utilizador', () => {
   const userMail = generateUniqueEmail();
 
   return request(app).post(route)
@@ -82,7 +82,7 @@ test('Test #58 - Inserir um utilizador', () => {
     });
 });
 
-test('Test #58.1 - Guardar password encriptada', async () => {
+test('Test #62.1 - Guardar password encriptada', async () => {
   const userMail = generateUniqueEmail();
 
   const res = await request(app).post(route)
@@ -123,12 +123,12 @@ describe('Validação de criar um user', () => {
       });
   };
 
-  test('Test #59 - Inserir um utilizador sem username', () => testTemplate({ username: null }, 'Username é um atributo obrigatório!'));
-  test('Test #60 - Inserir um utilizador sem email', () => testTemplate({ email: null }, 'Email é um atributo obrigatório!'));
-  test('Test #61 - Inserir um utilizador sem password', () => testTemplate({ password: null }, 'Password é um atributo obrigatório!'));
+  test('Test #63 - Inserir um utilizador sem username', () => testTemplate({ username: null }, 'Username é um atributo obrigatório!'));
+  test('Test #64 - Inserir um utilizador sem email', () => testTemplate({ email: null }, 'Email é um atributo obrigatório!'));
+  test('Test #65 - Inserir um utilizador sem password', () => testTemplate({ password: null }, 'Password é um atributo obrigatório!'));
 });
 
-test('Test #62 - Atualizar os dados de um utilizador', () => {
+test('Test #66 - Atualizar os dados de um utilizador', () => {
   const userMail = generateUniqueEmail();
 
   return app.db('users')

@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 module.exports = (app) => {
   const getAll = (req, res, next) => {
     app.services.restaurantregistration.getAll()
@@ -20,6 +21,21 @@ module.exports = (app) => {
       }).catch((err) => {
         next(err);
       });
+  };
+
+  const confirmEmail = async (req, res, next) => {
+    const { email } = req.params;
+    try {
+      const result = await app.services.restaurantregistration.confirmEmail(email);
+
+      if (result.error) {
+        return res.status(404).json({ error: result.error });
+      }
+
+      return res.status(200).json({ message: 'Email confirmado com sucesso!' });
+    } catch (err) {
+      next(err);
+    }
   };
 
   const updatePassword = async (req, res) => {
@@ -45,6 +61,7 @@ module.exports = (app) => {
     getAll,
     getId,
     create,
+    confirmEmail,
     updatePassword,
     update,
   };

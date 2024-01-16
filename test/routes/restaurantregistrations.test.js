@@ -28,7 +28,7 @@ test('Test #2 - Listar um restaurante por ID', () => {
       desc: 'Restaurante de comida italiana situado em Braga',
       rphone: 253456789,
       location: 'Rua Gonçalo Sousa 285',
-      image: '/Frontend/theknife-website/src/assets/logos/TheKnife-LogoDark.png',
+      image: 'https://t4.ftcdn.net/jpg/02/94/26/33/360_F_294263329_1IgvqNgDbhmQNgDxkhlW433uOFuIDar4.jpg',
       numberoftables: 10,
       capacity: 200,
       openingdays: 'Aberto de segunda a sábado',
@@ -57,7 +57,7 @@ test('Test #3 - Inserir registo de restaurantes', () => {
       desc: 'Restaurante de comida italiana situado em Braga',
       rphone: 253456789,
       location: 'Rua Gonçalo Sousa 285',
-      image: '/Frontend/theknife-website/src/assets/logos/TheKnife-LogoDark.png',
+      image: 'https://t4.ftcdn.net/jpg/02/94/26/33/360_F_294263329_1IgvqNgDbhmQNgDxkhlW433uOFuIDar4.jpg',
       numberoftables: 10,
       capacity: 200,
       openingdays: 'Aberto de segunda a sábado',
@@ -86,7 +86,7 @@ test('Test #3.1 - Guardar password encriptada', async () => {
       desc: 'Restaurante de comida italiana situado em Braga',
       rphone: 253456789,
       location: 'Rua Gonçalo Sousa 285',
-      image: '/Frontend/theknife-website/src/assets/logos/TheKnife-LogoDark.png',
+      image: 'https://t4.ftcdn.net/jpg/02/94/26/33/360_F_294263329_1IgvqNgDbhmQNgDxkhlW433uOFuIDar4.jpg',
       numberoftables: 10,
       capacity: 200,
       openingdays: 'Aberto de segunda a sábado',
@@ -118,7 +118,7 @@ describe('Validação de criar um registo de um restaurante', () => {
         desc: 'Restaurante de comida italiana situado em Braga',
         rphone: 253456789,
         location: 'Rua Gonçalo Sousa 285',
-        image: '/Frontend/theknife-website/src/assets/logos/TheKnife-LogoDark.png',
+        image: 'https://t4.ftcdn.net/jpg/02/94/26/33/360_F_294263329_1IgvqNgDbhmQNgDxkhlW433uOFuIDar4.jpg',
         numberoftables: 10,
         capacity: 200,
         openingdays: 'Aberto de segunda a sábado',
@@ -151,7 +151,25 @@ describe('Validação de criar um registo de um restaurante', () => {
   test('Test #19 - Inserir um registo de restaurante sem as horas de fecho', () => testTemplate({ closinghours: null }, 'Horas de fecho são um atributo obrigatório!'));
 });
 
-test('Test #20 - Inserir e confirmar a Palavra Passe', async () => {
+test('Test #20 - Verificação de email que existe', async () => {
+  const existingEmail = 'ea96fe22-0601-417d-920b-678d76415d3e@gmail.com';
+
+  const confirmationEmailResponse = await request(app).get(`/restaurantregistrations/confirm-email/${existingEmail}`);
+
+  expect(confirmationEmailResponse.status).toBe(200);
+  expect(confirmationEmailResponse.body.message).toBe('Email confirmado com sucesso!');
+});
+
+test('Test #21 - Verificação de email que não existe', async () => {
+  const nonexistentEmail = 'emailquenaoexiste@gmail.com';
+
+  const confirmationEmailResponse = await request(app).get(`/restaurantregistrations/confirm-email/${nonexistentEmail}`);
+
+  expect(confirmationEmailResponse.status).toBe(404);
+  expect(confirmationEmailResponse.body.error).toBe('Email não encontrado!');
+});
+
+test('Test #22 - Inserir e confirmar a Palavra Passe', async () => {
   const mail = generateUniqueEmail();
 
   const registrationResponse = await request(app).post(route)
@@ -165,7 +183,7 @@ test('Test #20 - Inserir e confirmar a Palavra Passe', async () => {
       desc: 'Restaurante de comida italiana situado em Braga',
       rphone: 253456789,
       location: 'Rua Gonçalo Sousa 285',
-      image: '/Frontend/theknife-website/src/assets/logos/TheKnife-LogoDark.png',
+      image: 'https://t4.ftcdn.net/jpg/02/94/26/33/360_F_294263329_1IgvqNgDbhmQNgDxkhlW433uOFuIDar4.jpg',
       numberoftables: 10,
       capacity: 200,
       openingdays: 'Aberto de segunda a sábado',
@@ -176,7 +194,7 @@ test('Test #20 - Inserir e confirmar a Palavra Passe', async () => {
 
   expect(registrationResponse.status).toBe(201);
 
-  const updatePasswordResponse = await request(app).put(`${route}/${registrationResponse.body.id}/updatepassword`)
+  const updatePasswordResponse = await request(app).put(`${route}/${registrationResponse.body.email}/updatepassword`)
     .send({
       newPassword: 'Rui@13-AA',
       confirmNewPassword: 'Rui@13-AA',
@@ -186,7 +204,7 @@ test('Test #20 - Inserir e confirmar a Palavra Passe', async () => {
   expect(updatePasswordResponse.body.message).toBe('Palavra Passe atualizada com sucesso!');
 });
 
-test('Test #21 - Inserir Palavras Passes diferentes', async () => {
+test('Test #23 - Inserir Palavras Passes diferentes', async () => {
   const mail = generateUniqueEmail();
 
   const registrationResponse = await request(app).post(route)
@@ -200,7 +218,7 @@ test('Test #21 - Inserir Palavras Passes diferentes', async () => {
       desc: 'Restaurante de comida italiana situado em Braga',
       rphone: 253456789,
       location: 'Rua Gonçalo Sousa 285',
-      image: '/Frontend/theknife-website/src/assets/logos/TheKnife-LogoDark.png',
+      image: 'https://t4.ftcdn.net/jpg/02/94/26/33/360_F_294263329_1IgvqNgDbhmQNgDxkhlW433uOFuIDar4.jpg',
       numberoftables: 10,
       capacity: 200,
       openingdays: 'Aberto de segunda a sábado',
@@ -211,7 +229,7 @@ test('Test #21 - Inserir Palavras Passes diferentes', async () => {
 
   expect(registrationResponse.status).toBe(201);
 
-  const updatePasswordResponse = await request(app).put(`${route}/${registrationResponse.body.id}/updatepassword`)
+  const updatePasswordResponse = await request(app).put(`${route}/${registrationResponse.body.email}/updatepassword`)
     .send({
       newPassword: 'Rui@13-AA',
       confirmNewPassword: 'Rui@14-AA',
@@ -221,7 +239,7 @@ test('Test #21 - Inserir Palavras Passes diferentes', async () => {
   expect(updatePasswordResponse.body.error).toBe('A Palavra Passe deve ser igual nos dois campos!');
 });
 
-test('Test #22 - Atualizar dados de um registo de um restaurante', () => {
+test('Test #24 - Atualizar dados de um registo de um restaurante', () => {
   const mail = generateUniqueEmail();
 
   return app.db('restaurantregistrations')
@@ -235,7 +253,7 @@ test('Test #22 - Atualizar dados de um registo de um restaurante', () => {
       desc: 'Restaurante de comida italiana situado em Braga',
       rphone: 253456789,
       location: 'Rua Gonçalo Sousa 285',
-      image: '/Frontend/theknife-website/src/assets/logos/TheKnife-LogoDark.png',
+      image: 'https://t4.ftcdn.net/jpg/02/94/26/33/360_F_294263329_1IgvqNgDbhmQNgDxkhlW433uOFuIDar4.jpg',
       numberoftables: 10,
       capacity: 200,
       openingdays: 'Aberto de segunda a sábado',
@@ -254,7 +272,7 @@ test('Test #22 - Atualizar dados de um registo de um restaurante', () => {
         desc: 'Restaurante de picanha situado em Braga',
         rphone: 253456789,
         location: 'Rua Gonçalo Sousa 285',
-        image: '/Frontend/theknife-website/src/assets/logos/TheKnife-LogoDark.png',
+        image: 'https://t4.ftcdn.net/jpg/02/94/26/33/360_F_294263329_1IgvqNgDbhmQNgDxkhlW433uOFuIDar4.jpg',
         numberoftables: 10,
         capacity: 150,
         openingdays: 'Aberto de segunda a sábado',

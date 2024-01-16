@@ -19,6 +19,9 @@ module.exports = (app) => {
     .get(app.routes.restaurantregistrations.getId)
     .put(app.routes.restaurantregistrations.update);
 
+  app.route('/restaurantregistrations/confirm-email/:email')
+    .get(app.routes.restaurantregistrations.confirmEmail);
+
   app.route('/restaurantregistrations/:id/updatepassword')
     .put(app.routes.restaurantregistrations.updatePassword);
 
@@ -54,7 +57,7 @@ module.exports = (app) => {
 
   app.route('/registerusers/confirm-email/:email')
     .get(app.routes.registerusers.confirmEmail);
-    
+
   app.route('/users')
     .all(app.config.passportuser.userauthenticate())
     .get(app.routes.users.getAll)
